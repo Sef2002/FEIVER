@@ -22,6 +22,27 @@ const ShopPage: React.FC = () => {
 
   const products = [
     {
+      name: "Balsamo Idratante",
+      description: "Balsamo professionale per capelli setosi",
+      price: "26,00",
+      image: "/assets/product1.png",
+      category: "Balsamo"
+    },
+    {
+      name: "Gel Modellante",
+      description: "Gel a tenuta forte per styling duraturo",
+      price: "24,00",
+      image: "/assets/product2.png",
+      category: "Styling"
+    },
+    {
+      name: "Pomata Opaca",
+      description: "Pomata modellante effetto opaco",
+      price: "28,00",
+      image: "/assets/product3.png",
+      category: "Styling"
+    },
+    {
       name: "Shampoo Professionale",
       description: "Shampoo nutriente per capelli trattati",
       price: "22,00",
@@ -41,27 +62,6 @@ const ShopPage: React.FC = () => {
       price: "32,00",
       image: "https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=compress&cs=tinysrgb&w=1200",
       category: "Oli"
-    },
-    {
-      name: "Crema Styling",
-      description: "Crema modellante per definizione e controllo",
-      price: "24,00",
-      image: "https://images.pexels.com/photos/6621264/pexels-photo-6621264.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      category: "Styling"
-    },
-    {
-      name: "Spray Termoprotezione",
-      description: "Protezione dal calore per styling",
-      price: "26,00",
-      image: "https://images.pexels.com/photos/6621441/pexels-photo-6621441.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      category: "Protezione"
-    },
-    {
-      name: "Siero Luminosità",
-      description: "Siero illuminante anti-crespo",
-      price: "30,00",
-      image: "https://images.pexels.com/photos/6621530/pexels-photo-6621530.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      category: "Trattamenti"
     }
   ];
 
