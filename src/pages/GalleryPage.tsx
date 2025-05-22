@@ -16,25 +16,24 @@ const GalleryPage: React.FC = () => {
     };
     
     window.addEventListener('scroll', handleScroll);
-    // Trigger once for elements in initial view
     handleScroll();
     
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const galleryItems = [
-    { id: 1, category: 'haircuts', image: '/assets/proof1.png', title: 'Taglio Moderno' },
-    { id: 2, category: 'beards', image: '/assets/proof2.png', title: 'Barba Definita' },
-    { id: 3, category: 'haircuts', image: '/assets/proof3.png', title: 'Taglio Business' },
-    { id: 4, category: 'salon', image: '/assets/proof4.png', title: 'Il Nostro Spazio' },
-    { id: 5, category: 'beards', image: '/assets/proof5.png', title: 'Rifinitura Barba' },
-    { id: 6, category: 'haircuts', image: '/assets/proof6.png', title: 'Stile Elegante' },
-    { id: 7, category: 'salon', image: '/assets/proof1.png', title: 'Strumenti Professionali' },
-    { id: 8, category: 'haircuts', image: '/assets/proof2.png', title: 'Taglio Classico' },
-    { id: 9, category: 'beards', image: '/assets/proof3.png', title: 'Barba Lunga' },
-    { id: 10, category: 'salon', image: '/assets/proof4.png', title: 'Ambiente Elegante' },
-    { id: 11, category: 'haircuts', image: '/assets/proof5.png', title: 'Sfumatura Precisa' },
-    { id: 12, category: 'beards', image: '/assets/proof6.png', title: 'Rasatura Tradizionale' }
+    { id: 1, category: 'haircuts', image: '/assets/photo1.png', title: 'Taglio Moderno' },
+    { id: 2, category: 'beards', image: '/assets/photo2.png', title: 'Barba Definita' },
+    { id: 3, category: 'haircuts', image: '/assets/photo3.png', title: 'Taglio Business' },
+    { id: 4, category: 'salon', image: '/assets/photo4.png', title: 'Il Nostro Spazio' },
+    { id: 5, category: 'beards', image: '/assets/photo5.png', title: 'Rifinitura Barba' },
+    { id: 6, category: 'haircuts', image: '/assets/photo6.png', title: 'Stile Elegante' },
+    { id: 7, category: 'salon', image: '/assets/photo1.png', title: 'Strumenti Professionali' },
+    { id: 8, category: 'haircuts', image: '/assets/photo2.png', title: 'Taglio Classico' },
+    { id: 9, category: 'beards', image: '/assets/photo3.png', title: 'Barba Lunga' },
+    { id: 10, category: 'salon', image: '/assets/photo4.png', title: 'Ambiente Elegante' },
+    { id: 11, category: 'haircuts', image: '/assets/photo5.png', title: 'Sfumatura Precisa' },
+    { id: 12, category: 'beards', image: '/assets/photo6.png', title: 'Rasatura Tradizionale' }
   ];
 
   const filteredGallery = selectedCategory === 'all'
@@ -118,7 +117,7 @@ const GalleryPage: React.FC = () => {
           </div>
           
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 fade-in">
-            {['/assets/proof1.png', '/assets/proof2.png', '/assets/proof3.png', '/assets/proof4.png', '/assets/proof5.png', '/assets/proof6.png'].map((image, index) => (
+            {['/assets/photo1.png', '/assets/photo2.png', '/assets/photo3.png', '/assets/photo4.png', '/assets/photo5.png', '/assets/photo6.png'].map((image, index) => (
               <div key={index} className="group relative overflow-hidden">
                 <img 
                   src={image}
@@ -129,7 +128,7 @@ const GalleryPage: React.FC = () => {
                   href="#" 
                   className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
                 >
-                  <span className="text-white text-xl">@barbiere</span>
+                  <span className="text-white text-xl">@uniquestyle</span>
                 </a>
               </div>
             ))}
@@ -147,7 +146,7 @@ const GalleryPage: React.FC = () => {
           <div className="max-w-2xl mx-auto fade-in">
             <h2 className="text-4xl font-heading font-bold mb-6">Diventa Anche Tu Un Nostro Cliente</h2>
             <p className="text-lg text-gray-300 mb-8">
-              Ti è piaciuto quello che hai visto? Prenota il tuo appuntamento oggi stesso per un'esperienza di barbiere senza pari.
+              Ti è piaciuto quello che hai visto? Prenota il tuo appuntamento oggi stesso per un'esperienza senza pari.
             </p>
             <a href="#" className="btn btn-primary text-lg px-8 py-3">PRENOTA ORA</a>
           </div>
