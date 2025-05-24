@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-2xl font-heading mb-4 text-white">UNIQUE STYLE</h4>
             <p className="text-gray-400 mb-6">
-              Il miglior salone nella città di Caravaggio, dove tradizione e modernità si incontrano per offrire servizi di altissima qualità.
+              Il miglior salone nella città di Treviglio, dove tradizione e modernità si incontrano per offrire servizi di altissima qualità.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 border border-gold flex items-center justify-center text-gold hover:bg-gold hover:text-black transition-all">
@@ -63,12 +63,12 @@ const Footer: React.FC = () => {
             <div className="space-y-4 text-gray-400">
               <p className="flex flex-col">
                 <span className="text-gold mb-1">Indirizzo</span>
-                <span>Via Treviglio, 25</span>
-                <span>presso C.C. di Caravaggio, 24043</span>
+                <span>Via Roma, 9</span>
+                <span>24047 Treviglio BG</span>
               </p>
               <p className="flex flex-col">
                 <span className="text-gold mb-1">Telefono</span>
-                <a href="tel:0363226324" className="hover:text-gold transition-colors">0363 226324</a>
+                <a href="tel:3923234727" className="hover:text-gold transition-colors">392 323 4727</a>
               </p>
               <p className="flex flex-col">
                 <span className="text-gold mb-1">Email</span>

@@ -28,16 +28,16 @@ const HomePage: React.FC = () => {
         <div className="absolute inset-0 bg-black">
           <div 
             className="absolute inset-0 bg-center bg-cover opacity-50"
-            style={{ backgroundImage: "url('/assets/background.png')" }}
+            style={{ backgroundImage: "url('/assets/background2.png')" }}
           ></div>
         </div>
         <div className="container mx-auto px-4 md:px-8 relative z-10">
           <div className="max-w-3xl">
             <h1 className="text-5xl sm:text-6xl md:text-7xl font-heading font-bold mb-2 fade-in" style={{ '--delay': '100ms' } as React.CSSProperties}>
-              UNIQUE<br />STYLE
+              UNIQUE STYLE
             </h1>
-            <p className="text-lg sm:text-xl text-gray-300 mb-4 max-w-xl fade-in" style={{ '--delay': '200ms' } as React.CSSProperties}>
-              Ci dedichiamo ogni giorno a valorizzare ogni sfumatura del tuo stile.
+            <p className="text-lg sm:text-xl text-gray-300 mb-4 max-w-xl fade-in italic" style={{ '--delay': '200ms' } as React.CSSProperties}>
+              "Unico: nel linguaggio filosofico l'individuo in quanto singolare. Irripetibile. Eccezionale. Non si può replicare"
             </p>
             <div className="w-20 h-[1px] bg-gold mb-8"></div>
             <div className="flex flex-wrap gap-4 fade-in" style={{ '--delay': '300ms' } as React.CSSProperties}>
@@ -55,7 +55,7 @@ const HomePage: React.FC = () => {
             <div className="fade-in">
               <h2 className="section-title">La Nostra Storia</h2>
               <p className="text-gray-300 mb-8">
-                Nel Centro Commerciale di Caravaggio, in Via Treviglio 25, Unique Style è il punto di riferimento per chi desidera un'esperienza esclusiva, dove la cura del capello si unisce al relax e all'eleganza.
+                Nel cuore di Treviglio, in Via Roma 9, Unique Style è il punto di riferimento per chi desidera un'esperienza esclusiva, dove la cura del capello si unisce al relax e all'eleganza.
               </p>
               <p className="text-gray-300 mb-8">
                 Ogni servizio è studiato per valorizzare la tua immagine con trattamenti di alta qualità, dalle colorazioni raffinate ai tagli su misura, fino ai rituali di benessere che rigenerano e illuminano la chioma. Il nostro team di hairstylist esperti ti guiderà nella scelta del look perfetto, con attenzione ai dettagli e un approccio innovativo.
@@ -92,7 +92,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Services Preview */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-black">
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-12 fade-in">
             <h5 className="text-gold tracking-widest uppercase mb-2">Servizi Premium</h5>
