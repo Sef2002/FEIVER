@@ -46,21 +46,21 @@ const ShopPage: React.FC = () => {
       name: "Shampoo Professionale",
       description: "Shampoo nutriente per capelli trattati",
       price: "22,00",
-      image: "https://images.pexels.com/photos/6621462/pexels-photo-6621462.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      image: "/assets/product4.png",
       category: "Shampoo"
     },
     {
       name: "Maschera Ristrutturante",
       description: "Trattamento intensivo per capelli danneggiati",
       price: "28,00",
-      image: "https://images.pexels.com/photos/6621424/pexels-photo-6621424.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      image: "/assets/product5.png",
       category: "Trattamenti"
     },
     {
       name: "Olio di Argan",
       description: "Olio nutriente per capelli secchi",
       price: "32,00",
-      image: "https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      image: "/assets/product6.png",
       category: "Oli"
     }
   ];
