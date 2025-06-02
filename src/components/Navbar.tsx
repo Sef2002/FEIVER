@@ -1,130 +1,94 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShoppingCart } from 'lucide-react';
+import { useCart } from '../shop/context/CartContext';
+import CartDrawer from '../shop/components/CartDrawer'; // ✅ Import drawer
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false); // ✅ Drawer state
+  const { cartItems } = useCart();
+
+  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <header 
-      className={`fixed w-full z-50 transition-all duration-300 ${
+    <>
+      <header className={`fixed w-full z-50 transition-all duration-300 ${
         scrolled ? 'bg-black py-3' : 'bg-transparent py-6'
-      }`}
-    >
-      <div className="container mx-auto px-4 md:px-8">
-        <nav className="flex justify-between items-center bg-[#1b1b1b] rounded-[40px] px-8 py-4">
-          <NavLink to="/" className="text-2xl font-heading text-white">
-            <img src="/assets/logo.png" alt="Bato's Logo" className="h-12" />
-          </NavLink>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-10">
-            <NavLink 
-              to="/" 
-              className={({isActive}) => 
-                `nav-link ${isActive ? 'active' : ''} text-sm tracking-wider`
-              }
-            >
-              HOME
+      }`}>
+        <div className="container mx-auto px-4 md:px-8">
+          <nav className="flex justify-between items-center bg-[#1b1b1b] rounded-[40px] px-8 py-4">
+            <NavLink to="/" className="text-2xl font-heading text-white">
+              <img src="/assets/logo.png" alt="Bato's Logo" className="h-12" />
             </NavLink>
-            <NavLink 
-              to="/servizi" 
-              className={({isActive}) => 
-                `nav-link ${isActive ? 'active' : ''} text-sm tracking-wider`
-              }
-            >
-              SERVIZI
-            </NavLink>
-            <NavLink 
-              to="/galleria" 
-              className={({isActive}) => 
-                `nav-link ${isActive ? 'active' : ''} text-sm tracking-wider`
-              }
-            >
-              GALLERIA
-            </NavLink>
-            <NavLink 
-              to="/contatti" 
-              className={({isActive}) => 
-                `nav-link ${isActive ? 'active' : ''} text-sm tracking-wider`
-              }
-            >
-              CONTATTI
-            </NavLink>
-          </div>
 
-          {/* CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <NavLink to="/shop" className="btn btn-outline text-sm">SHOP</NavLink>
-            <a href="#" className="btn btn-primary text-sm">PRENOTA</a>
-          </div>
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center space-x-10">
+              <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''} text-sm tracking-wider`}>HOME</NavLink>
+              <NavLink to="/servizi" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''} text-sm tracking-wider`}>SERVIZI</NavLink>
+              <NavLink to="/galleria" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''} text-sm tracking-wider`}>GALLERIA</NavLink>
+              <NavLink to="/contatti" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''} text-sm tracking-wider`}>CONTATTI</NavLink>
+            </div>
 
-          {/* Mobile Menu Button */}
-          <button 
-            onClick={() => setIsOpen(!isOpen)} 
-            className="md:hidden text-white"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </nav>
-      </div>
+            {/* CTA Buttons + Cart */}
+            <div className="hidden md:flex items-center space-x-4">
+              <NavLink to="/shop" className="btn btn-outline text-sm">SHOP</NavLink>
+              <NavLink to="/prenota/servizio" className="btn btn-primary text-sm">PRENOTA</NavLink>
 
-      {/* Mobile Menu */}
-      <div 
-        className={`fixed inset-0 bg-black bg-opacity-95 z-40 md:hidden transition-transform duration-300 ease-in-out ${
+              {/* 🛒 Cart Icon */}
+              <button
+                className="relative text-white hover:text-gold transition-colors"
+                onClick={() => setCartOpen(true)} // ✅ Open drawer
+              >
+                <ShoppingCart size={24} />
+                {totalQuantity > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-gold text-black text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
+                    {totalQuantity}
+                  </span>
+                )}
+              </button>
+            </div>
+
+            {/* Mobile Menu Toggle */}
+            <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white">
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </nav>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className={`fixed inset-0 bg-black bg-opacity-95 z-40 md:hidden transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
-        } pt-20`}
-      >
-        <div className="container mx-auto px-4 flex flex-col space-y-8">
-          <NavLink 
-            to="/" 
-            className="text-xl font-heading text-white hover:text-gold transition-colors py-2"
-            onClick={() => setIsOpen(false)}
-          >
-            HOME
-          </NavLink>
-          <NavLink 
-            to="/servizi" 
-            className="text-xl font-heading text-white hover:text-gold transition-colors py-2"
-            onClick={() => setIsOpen(false)}
-          >
-            SERVIZI
-          </NavLink>
-          <NavLink 
-            to="/galleria" 
-            className="text-xl font-heading text-white hover:text-gold transition-colors py-2"
-            onClick={() => setIsOpen(false)}
-          >
-            GALLERIA
-          </NavLink>
-          <NavLink 
-            to="/contatti" 
-            className="text-xl font-heading text-white hover:text-gold transition-colors py-2"
-            onClick={() => setIsOpen(false)}
-          >
-            CONTATTI
-          </NavLink>
-          <div className="flex flex-col space-y-4 pt-6">
-            <NavLink to="/shop" className="btn btn-outline text-center" onClick={() => setIsOpen(false)}>SHOP</NavLink>
-            <a href="#" className="btn btn-primary text-center" onClick={() => setIsOpen(false)}>PRENOTA</a>
+        } pt-20`}>
+          <div className="container mx-auto px-4 flex flex-col space-y-8">
+            {['/', '/servizi', '/galleria', '/contatti'].map((path, i) => (
+              <NavLink
+                key={i}
+                to={path}
+                className="text-xl font-heading text-white hover:text-gold transition-colors py-2"
+                onClick={() => setIsOpen(false)}
+              >
+                {path.replace('/', '').toUpperCase() || 'HOME'}
+              </NavLink>
+            ))}
+            <div className="flex flex-col space-y-4 pt-6">
+              <NavLink to="/shop" className="btn btn-outline text-center" onClick={() => setIsOpen(false)}>SHOP</NavLink>
+              <NavLink to="/prenota/servizio" className="btn btn-primary text-center" onClick={() => setIsOpen(false)}>PRENOTA</NavLink>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* ✅ Cart Drawer Component */}
+      <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
+    </>
   );
 };
 
