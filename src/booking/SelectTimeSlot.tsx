@@ -30,11 +30,45 @@ const SelectTimeSlot = () => {
     }
   }, [date]);
 
+  const checkIfSlotAvailable = async (barberId: string, dateStr: string, time: string, duration: number) => {
+    const { data: appointments, error } = await supabase
+      .from('appointments')
+      .select('appointment_time, duration_min')
+      .eq('appointment_date', dateStr)
+      .eq('barber_id', barberId);
+
+    if (error) {
+      console.error('Error checking slot availability:', error);
+      return false;
+    }
+
+    const toMinutes = (t: string) => {
+      const [h, m] = t.split(':').map(Number);
+      return h * 60 + m;
+    };
+    const fromMinutes = (m: number) => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
+
+    const slotStart = toMinutes(time);
+    const slotEnd = slotStart + duration;
+
+    for (const appt of appointments || []) {
+      const apptStart = toMinutes(appt.appointment_time);
+      const apptEnd = apptStart + appt.duration_min;
+      if (slotStart < apptEnd && slotEnd > apptStart) return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async () => {
     if (!selectedTime || !name || !phone) return alert('Compila tutti i campi.');
 
     const dateStr = format(date, 'yyyy-MM-dd');
     const barberId = selectedBarber === 'any' ? null : selectedBarber.id;
+
+    if (barberId) {
+      const isAvailable = await checkIfSlotAvailable(barberId, dateStr, selectedTime, duration);
+      if (!isAvailable) return alert("L'orario selezionato non è più disponibile. Riprova.");
+    }
 
     const { error } = await supabase.from('appointments').insert({
       appointment_date: dateStr,

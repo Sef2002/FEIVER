@@ -100,44 +100,44 @@ const HomePage: React.FC = () => {
             <div className="w-20 h-[2px] bg-gold mx-auto mt-4"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: 'Taglio Donna',
-                description: 'Taglio personalizzato per valorizzare il tuo stile e la natura dei tuoi capelli.',
-                price: 'da €35'
+                title: 'Taglio/Piega',
+                description: 'Dai forma al tuo stile con tagli personalizzati e pieghe professionali che valorizzano la tua bellezza naturale.',
+                image: '/assets/photo1.png'
               },
               {
-                title: 'Piega',
-                description: 'Piega professionale per un look perfetto, dalla classica alla più elaborata.',
-                price: 'da €25'
+                title: 'Colore',
+                description: 'Trasforma il tuo look con le nostre tecniche di colorazione avanzate e prodotti di alta qualità.',
+                image: '/assets/photo2.png'
               },
               {
-                title: 'Colorazione',
-                description: 'Servizio di colorazione completo con prodotti professionali per un risultato duraturo.',
-                price: 'da €45'
+                title: 'Trattamenti',
+                description: 'Rigenera e nutri i tuoi capelli con i nostri trattamenti specializzati per una chioma sana e luminosa.',
+                image: '/assets/photo3.png'
               }
             ].map((service, index) => (
               <div 
                 key={index} 
-                className="bg-black p-8 border border-gray-800 hover:border-gold transition-all fade-in"
+                className="group relative overflow-hidden fade-in"
                 style={{ '--delay': `${index * 100}ms` } as React.CSSProperties}
               >
-                <h3 className="text-2xl font-heading mb-4 text-white">{service.title}</h3>
-                <p className="text-gray-400 mb-6 h-24">{service.description}</p>
-                <div className="flex justify-between items-end">
-                  <span className="text-gold text-2xl font-heading">{service.price}</span>
+                <img 
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-6">
+                  <h3 className="text-2xl font-heading mb-2 text-white">{service.title}</h3>
+                  <p className="text-gray-300 mb-4">{service.description}</p>
                   <Link to="/servizi" className="flex items-center text-gold hover:text-white transition-colors">
-                    <span className="mr-2">Dettagli</span>
+                    <span className="mr-2">Scopri di più</span>
                     <ArrowRight size={16} />
                   </Link>
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="text-center mt-12 fade-in">
-            <Link to="/servizi" className="btn btn-outline">VEDI TUTTI I SERVIZI</Link>
           </div>
         </div>
       </section>
