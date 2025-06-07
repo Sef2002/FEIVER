@@ -105,7 +105,7 @@ const HomePage: React.FC = () => {
               {
                 title: 'Taglio/Piega',
                 description: 'Dai forma al tuo stile con tagli personalizzati e pieghe professionali che valorizzano la tua bellezza naturale.',
-                image: '/assets/photo1.png'
+                image: 'assets/piega.png'
               },
               {
                 title: 'Colore',
