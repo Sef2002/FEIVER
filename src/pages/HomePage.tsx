@@ -110,7 +110,7 @@ const HomePage: React.FC = () => {
               {
                 title: 'Colore',
                 description: 'Trasforma il tuo look con le nostre tecniche di colorazione avanzate e prodotti di alta qualità.',
-                image: '/assets/photo2.png'
+                image: 'assets/colorazione.png'
               },
               {
                 title: 'Extention',
