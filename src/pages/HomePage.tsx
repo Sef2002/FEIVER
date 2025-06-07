@@ -114,8 +114,8 @@ const HomePage: React.FC = () => {
               },
               {
                 title: 'Extention',
-                description: 'Rigenera e nutri i tuoi capelli con i nostri trattamenti specializzati per una chioma sana e luminosa.',
-                image: 'assets/colorazione.png'
+                description: 'Volume e lunghezza istantanei per un look naturale e irresistibile.',
+                image: 'assets/extention.png'
               }
             ].map((service, index) => (
               <div 
