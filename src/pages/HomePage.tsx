@@ -91,6 +91,57 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* Services Preview */}
+      <section className="py-20 bg-black">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="text-center mb-12 fade-in">
+            <h5 className="text-gold tracking-widest uppercase mb-2">Servizi Premium</h5>
+            <h2 className="section-title">I Nostri Servizi</h2>
+            <div className="w-20 h-[2px] bg-gold mx-auto mt-4"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                title: 'Taglio/Piega',
+                description: 'Dai forma al tuo stile con tagli personalizzati e pieghe professionali che valorizzano la tua bellezza naturale.',
+                image: '/assets/photo1.png'
+              },
+              {
+                title: 'Colore',
+                description: 'Trasforma il tuo look con le nostre tecniche di colorazione avanzate e prodotti di alta qualità.',
+                image: '/assets/photo2.png'
+              },
+              {
+                title: 'Trattamenti',
+                description: 'Rigenera e nutri i tuoi capelli con i nostri trattamenti specializzati per una chioma sana e luminosa.',
+                image: '/assets/photo3.png'
+              }
+            ].map((service, index) => (
+              <div 
+                key={index} 
+                className="group relative overflow-hidden fade-in"
+                style={{ '--delay': `${index * 100}ms` } as React.CSSProperties}
+              >
+                <img 
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-6">
+                  <h3 className="text-2xl font-heading mb-2 text-white">{service.title}</h3>
+                  <p className="text-gray-300 mb-4">{service.description}</p>
+                  <Link to="/servizi" className="flex items-center text-gold hover:text-white transition-colors">
+                    <span className="mr-2">Scopri di più</span>
+                    <ArrowRight size={16} />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Gallery Preview */}
       <section className="py-20 bg-black">
         <div className="container mx-auto px-4 md:px-8">
@@ -117,21 +168,21 @@ const HomePage: React.FC = () => {
             </div>
             <div>
               <img 
-                src="/assets/photo4.png" 
+                src="/assets/photo3.png" 
                 alt="Taglio moderno" 
                 className="w-full h-full object-cover"
               />
             </div>
             <div>
               <img 
-                src="/assets/photo5.png" 
+                src="/assets/photo4.png" 
                 alt="Dettaglio taglio" 
                 className="w-full h-full object-cover"
               />
             </div>
             <div>
               <img 
-                src="/assets/photo6.png" 
+                src="/assets/photo5.png" 
                 alt="Interno del negozio" 
                 className="w-full h-full object-cover"
               />
