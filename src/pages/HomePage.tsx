@@ -114,7 +114,7 @@ const HomePage: React.FC = () => {
               },
               {
                 title: 'Extention',
-                description: 'Volume e lunghezza istantanei per un look naturale e irresistibile.',
+                description: 'Volume e lunghezza istantanei per un look naturale e irresistibile. Vieni a scoprirle in negozio,',
                 image: 'assets/extention.png'
               }
             ].map((service, index) => (
