@@ -143,53 +143,53 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Gallery Preview */}
-      <section className="py-16 bg-black">
+      <section className="py-20 bg-black">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="text-center mb-8 fade-in">
+          <div className="text-center mb-12 fade-in">
             <h5 className="text-gold tracking-widest uppercase mb-2">Il Nostro Lavoro</h5>
             <h2 className="section-title">Galleria</h2>
             <div className="w-20 h-[2px] bg-gold mx-auto mt-4"></div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 fade-in">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 fade-in">
             <div className="col-span-2 row-span-2">
               <img 
                 src="/assets/photo1.png" 
                 alt="Unique Style al lavoro" 
-                className="w-full h-48 md:h-64 object-cover rounded-lg hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover"
               />
             </div>
             <div>
               <img 
                 src="/assets/photo2.png" 
                 alt="Cliente soddisfatto" 
-                className="w-full h-24 md:h-32 object-cover rounded-lg hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover"
               />
             </div>
             <div>
               <img 
                 src="/assets/photo3.png" 
                 alt="Taglio moderno" 
-                className="w-full h-24 md:h-32 object-cover rounded-lg hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover"
               />
             </div>
             <div>
               <img 
                 src="/assets/photo4.png" 
                 alt="Dettaglio taglio" 
-                className="w-full h-24 md:h-32 object-cover rounded-lg hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover"
               />
             </div>
             <div>
               <img 
-                src="/assets/photo6.png" 
+                src="/assets/photo5.png" 
                 alt="Interno del negozio" 
-                className="w-full h-24 md:h-32 object-cover rounded-lg hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover"
               />
             </div>
           </div>
 
-          <div className="text-center mt-8 fade-in">
+          <div className="text-center mt-12 fade-in">
             <Link to="/galleria" className="btn btn-outline">SFOGLIA LA GALLERIA</Link>
           </div>
         </div>
