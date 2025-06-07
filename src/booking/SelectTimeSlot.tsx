@@ -1,4 +1,3 @@
-// src/booking/SelectTimeSlot.tsx
 import { useEffect, useState } from 'react';
 import { supabase } from "../lib/supabase";
 import { useNavigate } from 'react-router-dom';
@@ -9,26 +8,45 @@ import { getAvailableTimeSlots } from '../lib/availability';
 
 const SelectTimeSlot = () => {
   const navigate = useNavigate();
-  const selectedService = JSON.parse(localStorage.getItem('selectedService') || '{}');
   const selectedBarber = JSON.parse(localStorage.getItem('selectedBarber') || '"any"');
+  const storedServiceId = localStorage.getItem('selectedServiceId');
 
   const [date, setDate] = useState(new Date());
   const [slots, setSlots] = useState<{ label: string; value: string }[]>([]);
   const [selectedTime, setSelectedTime] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+  const [duration, setDuration] = useState(30); // default fallback
 
-  const duration = selectedService?.duration_min || 30;
-
+  // Fetch the service duration from Supabase
   useEffect(() => {
-    if (selectedBarber === 'any') {
-      // You can optionally loop through barbers and pick one with most free space
-      setSlots([]); // Skip for now
-    } else {
-      const dateStr = format(date, 'yyyy-MM-dd');
-      getAvailableTimeSlots(selectedBarber.id, dateStr, duration).then(setSlots);
+    if (!storedServiceId) return;
+
+    const fetchServiceDuration = async () => {
+      const { data, error } = await supabase
+        .from('services')
+        .select('duration_min')
+        .eq('id', storedServiceId)
+        .single();
+
+      if (!error && data?.duration_min) {
+        setDuration(data.duration_min);
+      }
+    };
+
+    fetchServiceDuration();
+  }, [storedServiceId]);
+
+  // Fetch available time slots
+  useEffect(() => {
+    if (!storedServiceId || !selectedBarber || selectedBarber === 'any') {
+      setSlots([]);
+      return;
     }
-  }, [date]);
+
+    const dateStr = format(date, 'yyyy-MM-dd');
+    getAvailableTimeSlots(selectedBarber.id, dateStr, duration).then(setSlots);
+  }, [date, duration]);
 
   const checkIfSlotAvailable = async (barberId: string, dateStr: string, time: string, duration: number) => {
     const { data: appointments, error } = await supabase
@@ -46,7 +64,6 @@ const SelectTimeSlot = () => {
       const [h, m] = t.split(':').map(Number);
       return h * 60 + m;
     };
-    const fromMinutes = (m: number) => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
 
     const slotStart = toMinutes(time);
     const slotEnd = slotStart + duration;
@@ -56,11 +73,14 @@ const SelectTimeSlot = () => {
       const apptEnd = apptStart + appt.duration_min;
       if (slotStart < apptEnd && slotEnd > apptStart) return false;
     }
+
     return true;
   };
 
   const handleSubmit = async () => {
-    if (!selectedTime || !name || !phone) return alert('Compila tutti i campi.');
+    if (!selectedTime || !name || !phone || !storedServiceId) {
+      return alert('Compila tutti i campi.');
+    }
 
     const dateStr = format(date, 'yyyy-MM-dd');
     const barberId = selectedBarber === 'any' ? null : selectedBarber.id;
@@ -77,7 +97,7 @@ const SelectTimeSlot = () => {
       customer_name: name,
       phone,
       barber_id: barberId,
-      service_id: selectedService.id,
+      service_id: storedServiceId,
     });
 
     if (error) {
