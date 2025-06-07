@@ -113,9 +113,9 @@ const HomePage: React.FC = () => {
                 image: '/assets/photo2.png'
               },
               {
-                title: 'Trattamenti',
+                title: 'Extention',
                 description: 'Rigenera e nutri i tuoi capelli con i nostri trattamenti specializzati per una chioma sana e luminosa.',
-                image: '/assets/photo3.png'
+                image: 'assets/colorazione.png'
               }
             ].map((service, index) => (
               <div 
