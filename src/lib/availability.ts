@@ -1,16 +1,35 @@
+// src/lib/availability.ts
 import { supabase } from './supabase';
+
+// Utility to convert HH:MM to minutes
+function toMinutes(time: string): number {
+  const [h, m] = time.split(':').map(Number);
+  return h * 60 + m;
+}
+
+// Utility to convert minutes to HH:MM
+function fromMinutes(mins: number): string {
+  const h = String(Math.floor(mins / 60)).padStart(2, '0');
+  const m = String(mins % 60).padStart(2, '0');
+  return `${h}:${m}`;
+}
 
 export async function getAvailableTimeSlots(barberId: string, date: string, duration: number) {
   const weekday = new Date(date).toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
 
+  // 1. Fetch availabilities for that weekday
   const { data: availabilities, error: availError } = await supabase
     .from('barbers_availabilities')
     .select('start_time, end_time')
     .eq('barber_id', barberId)
     .eq('weekday', weekday);
 
-  if (availError || !availabilities?.length) return { perfect: [], other: [] };
+  if (availError || !availabilities?.length) {
+    console.error('No availability for this day:', availError);
+    return [];
+  }
 
+  // 2. Fetch appointments for that barber/date
   const { data: appointments, error: apptError } = await supabase
     .from('appointments')
     .select('appointment_time, duration_min')
@@ -18,7 +37,10 @@ export async function getAvailableTimeSlots(barberId: string, date: string, dura
     .eq('barber_id', barberId)
     .order('appointment_time', { ascending: true });
 
-  if (apptError) return { perfect: [], other: [] };
+  if (apptError) {
+    console.error('Error fetching appointments:', apptError);
+    return [];
+  }
 
   const busyBlocks = appointments.map((appt) => {
     const start = toMinutes(appt.appointment_time);
@@ -26,53 +48,27 @@ export async function getAvailableTimeSlots(barberId: string, date: string, dura
     return { start, end };
   });
 
-  const perfect: { label: string; value: string }[] = [];
-  const other: { label: string; value: string }[] = [];
+  const slots: { label: string; value: string }[] = [];
 
   for (const { start_time, end_time } of availabilities) {
     let current = toMinutes(start_time);
     const end = toMinutes(end_time);
 
-    const localBusy = busyBlocks
-      .filter(b => b.start >= current && b.end <= end)
-      .sort((a, b) => a.start - b.start);
+    // Sort existing appointments for comparison
+    const localBusy = busyBlocks.filter(b => b.start >= current && b.end <= end);
+    localBusy.push({ start: end, end }); // add virtual end
+    localBusy.sort((a, b) => a.start - b.start);
 
-    // Add dummy blocks for easier edge handling
-    localBusy.unshift({ start: current, end: current });
-    localBusy.push({ start: end, end: end });
-
-    for (let i = 0; i < localBusy.length - 1; i++) {
-      const gapStart = localBusy[i].end;
-      const gapEnd = localBusy[i + 1].start;
-      const gap = gapEnd - gapStart;
-
-      // Suggest perfect slot
-      if (gap === duration) {
-        const label = fromMinutes(gapStart);
-        perfect.push({ label, value: label });
+    for (const block of localBusy) {
+      while (current + duration <= block.start) {
+        const label = fromMinutes(current);
+        slots.push({ label, value: label });
+        current += duration; // move forward by service duration
       }
-
-      // Fill gap with as many standard slots as fit
-      let slotStart = gapStart;
-      while (slotStart + duration <= gapEnd) {
-        const label = fromMinutes(slotStart);
-        const alreadyPerfect = perfect.find(p => p.value === label);
-        if (!alreadyPerfect) other.push({ label, value: label });
-        slotStart += duration;
-      }
+      current = Math.max(current, block.end);
     }
   }
 
-  return { perfect, other };
+  return slots;
 }
 
-function toMinutes(timeString: string): number {
-  const [hours, minutes] = timeString.split(':').map(Number);
-  return hours * 60 + minutes;
-}
-
-function fromMinutes(minutes: number): string {
-  const hours = Math.floor(minutes / 60);
-  const mins = minutes % 60;
-  return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
-}
