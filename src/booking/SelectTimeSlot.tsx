@@ -2,81 +2,111 @@ import { useEffect, useState } from 'react';
 import { supabase } from "../lib/supabase";
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
-import DatePicker from 'react-datepicker'; 
+import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { getAvailableTimeSlots, TimeSlot } from '../lib/availability';
+import { getAvailableTimeSlots } from '../lib/availability';
 
 const SelectTimeSlot = () => {
   const navigate = useNavigate();
   const selectedBarber = JSON.parse(localStorage.getItem('selectedBarber') || '"any"');
-  const selectedServiceId = localStorage.getItem('selectedServiceId');
+  const storedServiceId = localStorage.getItem('selectedServiceId');
 
   const [date, setDate] = useState(new Date());
-  const [recommended, setRecommended] = useState<TimeSlot[]>([]);
-  const [others, setOthers] = useState<TimeSlot[]>([]);
+  const [slots, setSlots] = useState<{ label: string; value: string }[]>([]);
   const [selectedTime, setSelectedTime] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [duration, setDuration] = useState<number | null>(null);
-  const [service, setService] = useState<any>(null);
+  const [duration, setDuration] = useState(30); // default fallback
 
+  // Fetch the service duration from Supabase
   useEffect(() => {
-    const fetchService = async () => {
-      if (!selectedServiceId) return;
+    if (!storedServiceId) return;
+
+    const fetchServiceDuration = async () => {
       const { data, error } = await supabase
         .from('services')
-        .select('*')
-        .eq('id', selectedServiceId)
+        .select('duration_min')
+        .eq('id', storedServiceId)
         .single();
 
-      if (data) {
-        setService(data);
+      if (!error && data?.duration_min) {
         setDuration(data.duration_min);
-      } else {
-        console.error('Service not found:', error);
       }
     };
 
-    fetchService();
-  }, [selectedServiceId]);
+    fetchServiceDuration();
+  }, [storedServiceId]);
 
+  // Fetch available time slots
   useEffect(() => {
-    if (!duration || selectedBarber === 'any') {
-      setRecommended([]);
-      setOthers([]);
+    if (!storedServiceId || !selectedBarber || selectedBarber === 'any') {
+      setSlots([]);
       return;
     }
 
     const dateStr = format(date, 'yyyy-MM-dd');
-    getAvailableTimeSlots(selectedBarber.id, dateStr, duration).then(
-      ({ recommended, others }) => {
-        setRecommended(recommended);
-        setOthers(others);
-      }
-    );
+    getAvailableTimeSlots(selectedBarber.id, dateStr, duration).then(setSlots);
   }, [date, duration]);
 
+  const checkIfSlotAvailable = async (barberId: string, dateStr: string, time: string, duration: number) => {
+    const { data: appointments, error } = await supabase
+      .from('appointments')
+      .select('appointment_time, duration_min')
+      .eq('appointment_date', dateStr)
+      .eq('barber_id', barberId);
+
+    if (error) {
+      console.error('Error checking slot availability:', error);
+      return false;
+    }
+
+    const toMinutes = (t: string) => {
+      const [h, m] = t.split(':').map(Number);
+      return h * 60 + m;
+    };
+
+    const slotStart = toMinutes(time);
+    const slotEnd = slotStart + duration;
+
+    for (const appt of appointments || []) {
+      const apptStart = toMinutes(appt.appointment_time);
+      const apptEnd = apptStart + appt.duration_min;
+      if (slotStart < apptEnd && slotEnd > apptStart) return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async () => {
-    if (!selectedTime || !name || !phone || !duration || !service) {
-      alert('Compila tutti i campi.');
-      return;
+    if (!selectedTime || !name || !phone || !storedServiceId) {
+      return alert('Compila tutti i campi.');
     }
 
     const dateStr = format(date, 'yyyy-MM-dd');
+    const barberId = selectedBarber === 'any' ? null : selectedBarber.id;
+
+    if (barberId) {
+      const isAvailable = await checkIfSlotAvailable(barberId, dateStr, selectedTime, duration);
+      if (!isAvailable) return alert("L'orario selezionato non è più disponibile. Riprova.");
+    }
+
     const { error } = await supabase.from('appointments').insert({
       appointment_date: dateStr,
       appointment_time: `${selectedTime}:00`,
       duration_min: duration,
       customer_name: name,
       phone,
-      barber_id: selectedBarber === 'any' ? null : selectedBarber.id,
-      service_id: service.id,
+      barber_id: barberId,
+      service_id: storedServiceId,
     });
 
     if (error) {
       console.error(error);
       alert('Errore durante la prenotazione.');
     } else {
+      localStorage.setItem('customerName', name);
+      localStorage.setItem('selectedTime', selectedTime);
+      localStorage.setItem('selectedDate', dateStr);
       navigate('/prenota/successo');
     }
   };
@@ -94,45 +124,21 @@ const SelectTimeSlot = () => {
         />
       </div>
 
-      {recommended.length > 0 && (
-        <div className="mb-6">
-          <p className="mb-2 font-semibold">ORARI CONSIGLIATI</p>
-          <div className="grid grid-cols-3 gap-2">
-            {recommended.map((slot) => (
-              <button
-                key={slot.value}
-                className={`border rounded p-2 text-sm ${
-                  selectedTime === slot.value ? 'bg-[#5D4037] text-white' : 'hover:bg-gray-100'
-                }`}
-                onClick={() => setSelectedTime(slot.value)}
-              >
-                {slot.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      <div className="mb-6">
-        {others.length > 0 && (
-          <p className="mb-2 font-semibold">ALTRI ORARI</p>
+      <div className="grid grid-cols-3 gap-2 mb-6">
+        {slots.map((slot) => (
+          <button
+            key={slot.value}
+            className={`border rounded p-2 text-sm ${
+              selectedTime === slot.value ? 'bg-[#5D4037] text-white' : 'hover:bg-gray-100'
+            }`}
+            onClick={() => setSelectedTime(slot.value)}
+          >
+            {slot.label}
+          </button>
+        ))}
+        {slots.length === 0 && (
+          <p className="col-span-3 text-center text-gray-500">Nessun orario disponibile</p>
         )}
-        <div className="grid grid-cols-3 gap-2">
-          {others.map((slot) => (
-            <button
-              key={slot.value}
-              className={`border rounded p-2 text-sm ${
-                selectedTime === slot.value ? 'bg-[#5D4037] text-white' : 'hover:bg-gray-100'
-              }`}
-              onClick={() => setSelectedTime(slot.value)}
-            >
-              {slot.label}
-            </button>
-          ))}
-          {recommended.length === 0 && others.length === 0 && (
-            <p className="col-span-3 text-center text-gray-500">Nessun orario disponibile</p>
-          )}
-        </div>
       </div>
 
       <div className="space-y-4 mb-6">
