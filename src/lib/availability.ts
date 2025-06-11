@@ -11,7 +11,7 @@ function toMinutes(time: string): number {
 function fromMinutes(mins: number): string {
   const h = String(Math.floor(mins / 60)).padStart(2, '0');
   const m = String(mins % 60).padStart(2, '0');
-  return `${h}:${m}`;
+  return ${h}:${m};
 }
 
 export async function getAvailableTimeSlots(barberId: string, date: string, duration: number) {
