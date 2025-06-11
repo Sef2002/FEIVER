@@ -11,7 +11,7 @@ function toMinutes(time: string): number {
 function fromMinutes(mins: number): string {
   const h = String(Math.floor(mins / 60)).padStart(2, '0');
   const m = String(mins % 60).padStart(2, '0');
-  return ${h}:${m};
+  return `${h}:${m}`;
 }
 
 export async function getAvailableTimeSlots(barberId: string, date: string, duration: number) {
@@ -26,7 +26,7 @@ export async function getAvailableTimeSlots(barberId: string, date: string, dura
 
   if (availError || !availabilities?.length) {
     console.error('No availability for this day:', availError);
-    return [];
+    return { recommended: [], others: [] };
   }
 
   // 2. Fetch appointments for that barber/date
@@ -39,7 +39,7 @@ export async function getAvailableTimeSlots(barberId: string, date: string, dura
 
   if (apptError) {
     console.error('Error fetching appointments:', apptError);
-    return [];
+    return { recommended: [], others: [] };
   }
 
   const busyBlocks = appointments.map((appt) => {
@@ -69,5 +69,5 @@ export async function getAvailableTimeSlots(barberId: string, date: string, dura
     }
   }
 
-  return slots;
+  return { recommended: slots, others: [] };
 }
