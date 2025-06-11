@@ -45,7 +45,11 @@ const SelectTimeSlot = () => {
     }
 
     const dateStr = format(date, 'yyyy-MM-dd');
-    getAvailableTimeSlots(selectedBarber.id, dateStr, duration).then(setSlots);
+    getAvailableTimeSlots(selectedBarber.id, dateStr, duration).then((result) => {
+      // Combine perfect and other slots into a single array
+      const combinedSlots = [...result.perfect, ...result.other];
+      setSlots(combinedSlots);
+    });
   }, [date, duration]);
 
   const checkIfSlotAvailable = async (barberId: string, dateStr: string, time: string, duration: number) => {
@@ -113,7 +117,7 @@ const SelectTimeSlot = () => {
 
   return (
     <div className="max-w-2xl mx-auto py-10 px-4">
-      <h1 className="text-2xl font-bold mb-4 text-center">Scegli l’orario</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center">Scegli l'orario</h1>
 
       <div className="mb-6 flex justify-center">
         <DatePicker
