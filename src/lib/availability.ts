@@ -1,3 +1,5 @@
+import { supabase } from './supabase';
+
 export async function getAvailableTimeSlots(barberId: string, date: string, duration: number) {
   const weekday = new Date(date).toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
 
@@ -62,4 +64,15 @@ export async function getAvailableTimeSlots(barberId: string, date: string, dura
   }
 
   return { perfect, other };
+}
+
+function toMinutes(timeString: string): number {
+  const [hours, minutes] = timeString.split(':').map(Number);
+  return hours * 60 + minutes;
+}
+
+function fromMinutes(minutes: number): string {
+  const hours = Math.floor(minutes / 60);
+  const mins = minutes % 60;
+  return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
 }
