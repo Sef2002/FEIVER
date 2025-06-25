@@ -2,7 +2,7 @@
    versione edge-function ready
 */
 import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '../lib/supabase';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import DatePicker from 'react-datepicker';
