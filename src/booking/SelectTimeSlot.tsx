@@ -7,7 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { getAvailableTimeSlots } from '../lib/availability';
 
 /* ---------- TIPI ---------- */
-interface Service { 
+interface Service {
   id: string;
   name: string;
   price: number;
@@ -47,13 +47,13 @@ const TimeSlotButton = ({
 }) => (
   <button
     onClick={onClick}
-className={`p-3 rounded-lg border-2 text-sm font-primary transition-all duration-300 ${
-  isSelected
-    ? 'bg-gold text-black border-gold shadow-lg'
-    : isPerfect
-    ? 'bg-green-50 border-green-300 text-green-800 hover:bg-green-100 hover:border-green-400'
-    : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
-}`}
+    className={p-3 rounded-lg border-2 text-sm font-primary transition-all duration-300 ${
+      isSelected
+        ? 'bg-gold text-black border-gold shadow-lg'
+        : isPerfect
+        ? 'bg-green-50 border-green-300 text-green-800 hover:bg-green-100 hover:border-green-400'
+        : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
+    }}
   >
     <div className="flex flex-col items-center">
       <span className="font-semibold">{slot.label}</span>
@@ -217,17 +217,11 @@ const SelectTimeSlot = () => {
       // Prima inserisci/aggiorna il contatto
       let customerId = null;
       if (customerData.phone) {
-        // Cerca contatto esistente usando maybeSingle() invece di single()
         const { data: existingContact, error: contactError } = await supabase
           .from('contacts')
           .select('id')
           .eq('customer_phone', customerData.phone)
-          .maybeSingle();
-
-        if (contactError) {
-          console.error('Error checking existing contact:', contactError);
-          // Continua comunque con la creazione di un nuovo contatto
-        }
+          .single();
 
         if (existingContact) {
           // Aggiorna contatto esistente
@@ -243,8 +237,6 @@ const SelectTimeSlot = () => {
 
           if (!updateError) {
             customerId = existingContact.id;
-          } else {
-            console.error('Error updating contact:', updateError);
           }
         } else {
           // Crea nuovo contatto
@@ -261,8 +253,6 @@ const SelectTimeSlot = () => {
 
           if (!insertError && newContact) {
             customerId = newContact.id;
-          } else {
-            console.error('Error creating contact:', insertError);
           }
         }
       }
@@ -291,7 +281,7 @@ const SelectTimeSlot = () => {
 
       if (appointmentError) {
         console.error('Error creating appointment:', appointmentError);
-        alert('Errore durante la creazione dell\'appuntamento. Dettagli: ' + appointmentError.message);
+        alert('Errore durante la creazione dell\'appuntamento.');
         return;
       }
 
@@ -509,4 +499,4 @@ const SelectTimeSlot = () => {
   );
 };
 
-export default SelectTimeSlot; 
+export default SelectTimeSlot;
