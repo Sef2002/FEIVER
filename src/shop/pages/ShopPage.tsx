@@ -58,8 +58,57 @@ const ShopPage = () => {
         </div>
       </section>
 
+      {/* Brand Showcase - Nashi */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div className="fade-in">
+                <img 
+                  src="/assets/nashi.png" 
+                  alt="Nashi - Prodotti professionali per capelli"
+                  className="w-full h-auto rounded-lg shadow-lg"
+                />
+              </div>
+              <div className="fade-in space-y-6">
+                <div>
+                  <h2 className="text-3xl font-heading font-bold text-black mb-4">
+                    NASHI ARGAN
+                  </h2>
+                  <div className="w-16 h-[2px] bg-gold mb-6"></div>
+                </div>
+                <p className="text-gray-600 font-primary leading-relaxed">
+                  Nashi Argan è una linea di prodotti professionali per capelli che utilizza 
+                  l'olio di Argan puro del Marocco. Ogni prodotto è formulato per nutrire, 
+                  proteggere e valorizzare la bellezza naturale dei tuoi capelli.
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-gold rounded-full"></div>
+                    <span className="text-gray-700 font-primary">100% Olio di Argan puro</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-gold rounded-full"></div>
+                    <span className="text-gray-700 font-primary">Formulazioni professionali</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-gold rounded-full"></div>
+                    <span className="text-gray-700 font-primary">Risultati visibili dal primo utilizzo</span>
+                  </div>
+                </div>
+                <div className="pt-4">
+                  <button className="bg-gold text-black px-6 py-3 rounded-lg font-heading font-bold transition-all duration-300 hover:bg-opacity-90 shadow-lg hover:shadow-xl">
+                    SCOPRI LA LINEA NASHI
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Category Filter */}
-      <section className="py-8 bg-gray-50 border-y border-gray-200">
+      <section className="py-8 bg-white border-y border-gray-200">
         <div className="container mx-auto px-4 md:px-8">
           <div className="flex justify-center space-x-2 sm:space-x-6 overflow-x-auto pb-2">
             {categories.map((category) => (
