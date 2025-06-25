@@ -232,6 +232,7 @@ const SelectTimeSlot = () => {
               customer_email: customerData.email || null,
               customer_birthdate: customerData.birthdate || null,
               updated_at: new Date().toISOString(),
+              business_id: '268e0ae9-c539-471c-b4c2-1663cf598436',
             })
             .eq('id', existingContact.id);
 
@@ -247,6 +248,7 @@ const SelectTimeSlot = () => {
               customer_phone: customerData.phone,
               customer_email: customerData.email || null,
               customer_birthdate: customerData.birthdate || null,
+              business_id: '268e0ae9-c539-471c-b4c2-1663cf598436',
             })
             .select('id')
             .single();
@@ -272,7 +274,7 @@ const SelectTimeSlot = () => {
         appointment_status: 'in attesa' as const,
         paid: false,
         payment_method: null,
-        business_id: null, // Aggiungere se necessario
+        business_id: '268e0ae9-c539-471c-b4c2-1663cf598436',
       };
 
       const { error: appointmentError } = await supabase
