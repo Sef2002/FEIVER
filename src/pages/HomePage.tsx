@@ -23,7 +23,7 @@ const HomePage: React.FC = () => {
 
   return (
     <main>
-      {/* Hero Section */}
+      {/* Hero Section - UNCHANGED */}
       <section className="h-screen relative flex items-center">
         <div className="absolute inset-0 bg-black">
           <div 
@@ -59,31 +59,42 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="py-20 bg-black">
+      {/* About Section - UPDATED TO WHITE */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="fade-in">
-              <h2 className="section-title">La Nostra Storia</h2>
-              <p className="text-gray-300 mb-6">
-                Seventyfour Parrucchieri sorge in Via Giuseppe Bardelli 12 a Milano, nel vibrante e sempre attivo quartiere residenziale tra Città Studi e Lambrate, a soli un minuto a piedi dalla stazione ferroviaria.
-              </p>
-              <p className="text-gray-300 mb-6">
-                Pietro, il titolare, insieme al suo intero staff si prende cura con amore e dedizione della sua clientela proponendo servizi innovativi e creativi, colori alla moda e tagli che seguono sempre gli ultimi trend.
-              </p>
-              <p className="text-gray-300 mb-8">
-                Il nostro ambiente luminoso, dagli arredi curati nei minimi dettagli, crea un'atmosfera unica ed elegante dove ogni cliente può rilassarsi e godersi un'esperienza di bellezza completa.
-              </p>
+              <div className="text-center md:text-left mb-8">
+                <h5 className="text-gray-600 tracking-widest uppercase mb-2 font-primary">
+                  Chi Siamo
+                </h5>
+                <h2 className="text-4xl sm:text-5xl font-heading font-bold mb-6 text-black">
+                  LA NOSTRA STORIA
+                </h2>
+                <div className="w-20 h-[2px] bg-gold mx-auto md:mx-0"></div>
+              </div>
+              
+              <div className="space-y-6 text-gray-600 font-primary leading-relaxed">
+                <p>
+                  Seventyfour Parrucchieri sorge in Via Giuseppe Bardelli 12 a Milano, nel vibrante e sempre attivo quartiere residenziale tra Città Studi e Lambrate, a soli un minuto a piedi dalla stazione ferroviaria.
+                </p>
+                <p>
+                  Pietro, il titolare, insieme al suo intero staff si prende cura con amore e dedizione della sua clientela proponendo servizi innovativi e creativi, colori alla moda e tagli che seguono sempre gli ultimi trend.
+                </p>
+                <p>
+                  Il nostro ambiente luminoso, dagli arredi curati nei minimi dettagli, crea un'atmosfera unica ed elegante dove ogni cliente può rilassarsi e godersi un'esperienza di bellezza completa.
+                </p>
+              </div>
               
               {/* Features */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex items-center gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
                   <Award className="text-gold flex-shrink-0" size={20} />
-                  <span className="text-sm text-gray-300">Prodotti Nashi, Redken, Wella</span>
+                  <span className="text-sm text-gray-700 font-primary font-medium">Prodotti Nashi, Redken, Wella</span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
                   <Award className="text-gold flex-shrink-0" size={20} />
-                  <span className="text-sm text-gray-300">Sistema Nano Hairdreams</span>
+                  <span className="text-sm text-gray-700 font-primary font-medium">Sistema Nano Hairdreams</span>
                 </div>
               </div>
             </div>
@@ -93,24 +104,24 @@ const HomePage: React.FC = () => {
                 <img 
                   src="/assets/story1.png" 
                   alt="Seventyfour Parrucchieri - Ambiente elegante" 
-                  className="w-full h-48 sm:h-64 object-cover rounded-lg"
+                  className="w-full h-48 sm:h-64 object-cover rounded-lg shadow-md"
                 />
                 <img 
                   src="/assets/story2.png" 
                   alt="Prodotti professionali" 
-                  className="w-full h-48 sm:h-80 object-cover rounded-lg"
+                  className="w-full h-48 sm:h-80 object-cover rounded-lg shadow-md"
                 />
               </div>
               <div className="space-y-4 mt-8">
                 <img 
                   src="/assets/story3.png" 
                   alt="Pietro al lavoro" 
-                  className="w-full h-60 sm:h-80 object-cover rounded-lg"
+                  className="w-full h-60 sm:h-80 object-cover rounded-lg shadow-md"
                 />
                 <img 
                   src="/assets/story4.png" 
                   alt="Dettaglio servizio" 
-                  className="w-full h-48 sm:h-64 object-cover rounded-lg"
+                  className="w-full h-48 sm:h-64 object-cover rounded-lg shadow-md"
                 />
               </div>
             </div>
@@ -118,16 +129,20 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Services Preview */}
-      <section className="py-20 bg-zinc-900">
+      {/* Services Preview - UPDATED TO WHITE */}
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-12 fade-in">
-            <h5 className="text-gold tracking-widest uppercase mb-2">Servizi Specializzati</h5>
-            <h2 className="section-title">I Nostri Servizi</h2>
-            <p className="text-gray-300 mt-4 max-w-2xl mx-auto">
+            <h5 className="text-gray-600 tracking-widest uppercase mb-2 font-primary">
+              Servizi Specializzati
+            </h5>
+            <h2 className="text-4xl sm:text-5xl font-heading font-bold mb-6 text-black">
+              I NOSTRI SERVIZI
+            </h2>
+            <div className="w-20 h-[2px] bg-gold mx-auto mb-6"></div>
+            <p className="text-gray-600 mt-4 max-w-2xl mx-auto font-primary">
               Servizi per capelli a tutto tondo: tagli, pieghe, colore e trattamenti specializzati per la chioma
             </p>
-            <div className="w-20 h-[2px] bg-gold mx-auto mt-6"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -150,20 +165,31 @@ const HomePage: React.FC = () => {
             ].map((service, index) => (
               <div 
                 key={index} 
-                className="group relative overflow-hidden rounded-lg fade-in"
+                className="group bg-white border-2 border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg hover:border-gold transition-all duration-300 fade-in"
                 style={{ '--delay': `${index * 100}ms` } as React.CSSProperties}
               >
-                <img 
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent flex flex-col justify-end p-6">
-                  <h3 className="text-2xl font-heading mb-3 text-white">{service.title}</h3>
-                  <p className="text-gray-200 mb-4 text-sm leading-relaxed">{service.description}</p>
-                  <Link to="/servizi" className="flex items-center text-gold hover:text-white transition-colors group">
-                    <span className="mr-2">Scopri di più</span>
-                    <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                <div className="relative overflow-hidden">
+                  <img 
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                
+                <div className="p-6">
+                  <h3 className="text-2xl font-heading font-bold mb-3 text-black group-hover:text-gold transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4 font-primary text-sm leading-relaxed">
+                    {service.description}
+                  </p>
+                  <Link 
+                    to="/servizi" 
+                    className="flex items-center text-gold hover:text-black transition-colors group/link"
+                  >
+                    <span className="mr-2 font-primary font-medium">Scopri di più</span>
+                    <ArrowRight size={16} className="group-hover/link:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               </div>
@@ -172,13 +198,17 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Gallery Preview */}
-      <section className="py-20 bg-black">
+      {/* Gallery Preview - UPDATED TO WHITE */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-12 fade-in">
-            <h5 className="text-gold tracking-widest uppercase mb-2">Il Nostro Lavoro</h5>
-            <h2 className="section-title">Galleria</h2>
-            <div className="w-20 h-[2px] bg-gold mx-auto mt-4"></div>
+            <h5 className="text-gray-600 tracking-widest uppercase mb-2 font-primary">
+              Il Nostro Lavoro
+            </h5>
+            <h2 className="text-4xl sm:text-5xl font-heading font-bold mb-6 text-black">
+              GALLERIA
+            </h2>
+            <div className="w-20 h-[2px] bg-gold mx-auto"></div>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 fade-in">
@@ -186,46 +216,48 @@ const HomePage: React.FC = () => {
               <img 
                 src="/assets/photo1.png" 
                 alt="Seventyfour Parrucchieri - Lavoro professionale" 
-                className="w-full h-full object-cover rounded-lg"
+                className="w-full h-full object-cover rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
               />
             </div>
             <div>
               <img 
                 src="/assets/photo2.png" 
                 alt="Cliente soddisfatto" 
-                className="w-full h-full object-cover rounded-lg"
+                className="w-full h-full object-cover rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
               />
             </div>
             <div>
               <img 
                 src="/assets/photo3.png" 
                 alt="Taglio moderno" 
-                className="w-full h-full object-cover rounded-lg"
+                className="w-full h-full object-cover rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
               />
             </div>
             <div>
               <img 
                 src="/assets/photo4.png" 
                 alt="Dettaglio colorazione" 
-                className="w-full h-full object-cover rounded-lg"
+                className="w-full h-full object-cover rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
               />
             </div>
             <div>
               <img 
                 src="/assets/photo5.png" 
                 alt="Ambiente del salone" 
-                className="w-full h-full object-cover rounded-lg"
+                className="w-full h-full object-cover rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
               />
             </div>
           </div>
 
           <div className="text-center mt-12 fade-in">
-            <Link to="/galleria" className="btn btn-outline">SFOGLIA LA GALLERIA</Link>
+            <Link to="/galleria" className="bg-gold text-black px-8 py-3 rounded-lg font-heading font-bold text-lg transition-all duration-300 hover:bg-opacity-90 shadow-lg hover:shadow-xl inline-block">
+              SFOGLIA LA GALLERIA
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
+      {/* Call to Action - UNCHANGED (keeps the black background with image overlay) */}
       <section className="py-24 relative">
         <div className="absolute inset-0 bg-black">
           <div 
