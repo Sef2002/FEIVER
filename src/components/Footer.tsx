@@ -1,5 +1,5 @@
 import React from 'react';
-import { Facebook, Instagram, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Twitter, MapPin, Phone, Mail } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -7,9 +7,9 @@ const Footer: React.FC = () => {
       <div className="container mx-auto px-4 md:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h4 className="text-2xl font-heading mb-4 text-white">UNIQUE STYLE</h4>
+            <h4 className="text-2xl font-heading mb-4 text-white">SEVENTYFOUR PARRUCCHIERI</h4>
             <p className="text-gray-400 mb-6">
-              Il miglior salone nella città di Treviglio, dove tradizione e modernità si incontrano per offrire servizi di altissima qualità.
+              Nel vibrante quartiere tra Città Studi e Lambrate, Pietro e il suo team offrono servizi innovativi e creativi in un ambiente luminoso ed elegante.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 border border-gold flex items-center justify-center text-gold hover:bg-gold hover:text-black transition-all">
@@ -61,25 +61,35 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-xl font-heading mb-4 text-white">CONTATTI</h4>
             <div className="space-y-4 text-gray-400">
-              <p className="flex flex-col">
-                <span className="text-gold mb-1">Indirizzo</span>
-                <span>Via Roma, 9</span>
-                <span>24047 Treviglio BG</span>
+              <p className="flex items-start gap-3">
+                <MapPin className="text-gold mt-1 flex-shrink-0" size={18} />
+                <span>
+                  <span className="text-gold block mb-1">Indirizzo</span>
+                  Via Giuseppe Bardelli, 12<br />
+                  20131 Milano MI<br />
+                  <span className="text-sm text-gray-500">A 1 minuto dalla stazione Lambrate</span>
+                </span>
               </p>
-              <p className="flex flex-col">
-                <span className="text-gold mb-1">Telefono</span>
-                <a href="tel:3923234727" className="hover:text-gold transition-colors">392 323 4727</a>
+              <p className="flex items-center gap-3">
+                <Phone className="text-gold flex-shrink-0" size={18} />
+                <span>
+                  <span className="text-gold block mb-1">Telefono</span>
+                  <a href="tel:0297383541" className="hover:text-gold transition-colors">02 9738 3541</a>
+                </span>
               </p>
-              <p className="flex flex-col">
-                <span className="text-gold mb-1">Email</span>
-                <a href="mailto:uniquestyle@gmail.com" className="hover:text-gold transition-colors">uniquestyle@gmail.com</a>
+              <p className="flex items-center gap-3">
+                <Mail className="text-gold flex-shrink-0" size={18} />
+                <span>
+                  <span className="text-gold block mb-1">Email</span>
+                  <a href="mailto:info@seventyfourparrucchieri.it" className="hover:text-gold transition-colors">info@seventyfourparrucchieri.it</a>
+                </span>
               </p>
             </div>
           </div>
         </div>
         
         <div className="border-t border-gray-800 mt-10 pt-6 text-gray-500 text-sm flex flex-col md:flex-row justify-between items-center">
-          <p>© 2025 Unique Style. Tutti i diritti riservati.</p>
+          <p>© 2025 Seventyfour Parrucchieri. Tutti i diritti riservati.</p>
           <div className="mt-4 md:mt-0">
             <a href="#" className="hover:text-gold transition-colors mr-6">Privacy Policy</a>
             <a href="#" className="hover:text-gold transition-colors">Termini di Servizio</a>

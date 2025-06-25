@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu, X, ShoppingCart } from 'lucide-react';
+import { Menu, X, ShoppingCart, Scissors } from 'lucide-react';
 import { useCart } from '../shop/context/CartContext';
-import CartDrawer from '../shop/components/CartDrawer'; // ✅ Import drawer
+import CartDrawer from '../shop/components/CartDrawer';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false); // ✅ Drawer state
+  const [cartOpen, setCartOpen] = useState(false);
   const { cartItems } = useCart();
 
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -25,8 +25,11 @@ const Navbar: React.FC = () => {
       }`}>
         <div className="container mx-auto px-4 md:px-8">
           <nav className="flex justify-between items-center bg-[#1b1b1b] rounded-[40px] px-8 py-4">
-            <NavLink to="/" className="text-2xl font-heading text-white">
-              <img src="/assets/logo.png" alt="Bato's Logo" className="h-12" />
+            <NavLink to="/" className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gold rounded-full flex items-center justify-center">
+                <Scissors className="text-black" size={20} />
+              </div>
+              <span className="text-2xl font-heading text-white">SEVENTYFOUR</span>
             </NavLink>
 
             {/* Desktop Menu */}
@@ -42,10 +45,10 @@ const Navbar: React.FC = () => {
               <NavLink to="/shop" className="btn btn-outline text-sm">SHOP</NavLink>
               <NavLink to="/prenota/servizio" className="btn btn-primary text-sm">PRENOTA</NavLink>
 
-              {/* 🛒 Cart Icon */}
+              {/* Cart Icon */}
               <button
                 className="relative text-white hover:text-gold transition-colors"
-                onClick={() => setCartOpen(true)} // ✅ Open drawer
+                onClick={() => setCartOpen(true)}
               >
                 <ShoppingCart size={24} />
                 {totalQuantity > 0 && (
@@ -86,7 +89,6 @@ const Navbar: React.FC = () => {
         </div>
       </header>
 
-      {/* ✅ Cart Drawer Component */}
       <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
     </>
   );

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Award, Clock, Star } from 'lucide-react';
 
 const ServicesPage: React.FC = () => {
   useEffect(() => {
@@ -25,39 +26,45 @@ const ServicesPage: React.FC = () => {
     {
       category: 'Servizi Donna',
       items: [
-        { name: 'Taglio Donna', description: 'Taglio personalizzato per valorizzare il tuo stile', price: 'da €35' },
-        { name: 'Piega', description: 'Piega professionale per un look perfetto', price: 'da €25' },
-        { name: 'Colorazione', description: 'Servizio completo di colorazione professionale', price: 'da €45' },
-        { name: 'Trattamenti', description: 'Trattamenti specifici per la cura dei capelli', price: 'da €30' }
+        { name: 'Taglio Donna', description: 'Tagli personalizzati che seguono gli ultimi trend', price: 'da €40' },
+        { name: 'Piega Professionale', description: 'Piega con prodotti premium per un look impeccabile', price: 'da €30' },
+        { name: 'Colorazione Completa', description: 'Colori alla moda con prodotti Nashi, Redken e Wella', price: 'da €60' },
+        { name: 'Trattamenti Specializzati', description: 'Trattamenti intensivi per la cura e il benessere dei capelli', price: 'da €35' }
       ]
     },
     {
-      category: 'Taglio di Capelli Uomo',
+      category: 'Servizi Uomo',
       items: [
-        { name: 'Taglio Classico', description: 'Taglio tradizionale con forbici e pettine', price: '€25' },
-        { name: 'Taglio Moderno', description: 'Stile contemporaneo con tecniche avanzate', price: '€30' },
-        { name: 'Taglio Fade', description: 'Sfumatura progressiva sui lati e sul retro', price: '€35' },
-        { name: 'Taglio Premium', description: 'Consulenza, taglio e styling premium', price: '€45' }
+        { name: 'Taglio Classico', description: 'Taglio tradizionale con tecniche moderne', price: '€30' },
+        { name: 'Taglio Trendy', description: 'Stili contemporanei e alla moda', price: '€35' },
+        { name: 'Taglio + Barba', description: 'Servizio completo per un look curato', price: '€45' },
+        { name: 'Trattamento Capelli', description: 'Cura specifica per capelli maschili', price: '€25' }
       ]
     },
     {
-      category: 'Servizi Barba',
+      category: 'Colorazioni Innovative',
       items: [
-        { name: 'Rifinitura Barba', description: 'Modellatura e rifinitura della barba', price: '€15' },
-        { name: 'Barba Completa', description: 'Rasatura, modellatura e trattamento con oli', price: '€20' },
-        { name: 'Rasatura Tradizionale', description: 'Rasatura con asciugamano caldo e rasoio', price: '€25' },
-        { name: 'Trattamento Luxury', description: 'Rasatura premium con prodotti di alta gamma', price: '€35' }
+        { name: 'Colore Base', description: 'Colorazione uniforme con prodotti premium', price: 'da €50' },
+        { name: 'Meches/Colpi di Sole', description: 'Tecniche di schiaritura per effetti naturali', price: 'da €70' },
+        { name: 'Balayage', description: 'Tecnica moderna per sfumature naturali', price: 'da €80' },
+        { name: 'Correzione Colore', description: 'Servizio specializzato per correggere colorazioni', price: 'da €90' }
       ]
     },
     {
       category: 'Trattamenti Speciali',
       items: [
-        { name: 'Trattamento Viso', description: 'Pulizia e idratazione profonda del viso', price: '€30' },
-        { name: 'Massaggio Testa', description: 'Massaggio rilassante del cuoio capelluto', price: '€20' },
-        { name: 'Maschera Nutriente', description: 'Trattamento intensivo per capelli', price: '€25' },
-        { name: 'Pacchetto Sposa', description: 'Servizio completo per il giorno speciale', price: 'da €120' }
+        { name: 'Sistema Nano Hairdreams', description: 'Tecnologia innovativa per extension naturali', price: 'da €150' },
+        { name: 'Trattamento Ricostruttivo', description: 'Riparazione intensiva per capelli danneggiati', price: '€45' },
+        { name: 'Trattamento Idratante', description: 'Nutrimento profondo per capelli secchi', price: '€35' },
+        { name: 'Consulenza Personalizzata', description: 'Analisi completa e consigli su misura', price: '€20' }
       ]
     }
+  ];
+
+  const brands = [
+    { name: 'Nashi', description: 'Prodotti naturali di alta qualità' },
+    { name: 'Redken', description: 'Innovazione e scienza per i capelli' },
+    { name: 'Wella', description: 'Tradizione e professionalità' }
   ];
 
   return (
@@ -67,9 +74,10 @@ const ServicesPage: React.FC = () => {
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-10 fade-in">
             <h5 className="text-gold tracking-widest uppercase mb-2">I Nostri Servizi</h5>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-bold mb-6">SERVIZI PREMIUM</h1>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-              Esplora la nostra gamma completa di servizi, accuratamente progettati per offrire un'esperienza ineguagliabile e risultati impeccabili.
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-bold mb-6">SERVIZI INNOVATIVI</h1>
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+              Pietro e il suo team offrono servizi per capelli a tutto tondo: tagli, pieghe, colore e trattamenti specializzati 
+              con prodotti di alta qualità e tecniche all'avanguardia.
             </p>
           </div>
         </div>
@@ -103,26 +111,54 @@ const ServicesPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Additional Information */}
+      {/* Brands Section */}
       <section className="py-16 bg-zinc-900">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="text-center mb-12 fade-in">
+            <h2 className="text-3xl font-heading font-bold mb-4">Marche e Prodotti</h2>
+            <p className="text-gray-300 max-w-2xl mx-auto">
+              Utilizziamo esclusivamente prodotti di alta qualità delle migliori marche professionali
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {brands.map((brand, index) => (
+              <div key={index} className="fade-in text-center p-8 border border-gray-800 hover:border-gold transition-all">
+                <Award className="text-gold mx-auto mb-4" size={48} />
+                <h3 className="text-2xl font-heading mb-2">{brand.name}</h3>
+                <p className="text-gray-400">{brand.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Additional Information */}
+      <section className="py-16 bg-black">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="fade-in p-8 border border-gray-800 hover:border-gold transition-all">
+              <Clock className="text-gold mb-4" size={32} />
               <h3 className="text-2xl font-heading mb-4">Su Appuntamento</h3>
               <p className="text-gray-400 mb-6">
-                Per garantire un servizio personalizzato e di qualità, lavoriamo esclusivamente su appuntamento. Prenota in anticipo per assicurarti il tuo posto.
+                Per garantire un servizio personalizzato e di qualità, lavoriamo esclusivamente su appuntamento. 
+                Prenota in anticipo per assicurarti il tuo posto.
               </p>
             </div>
             <div className="fade-in p-8 border border-gray-800 hover:border-gold transition-all">
-              <h3 className="text-2xl font-heading mb-4">Prodotti Premium</h3>
+              <Star className="text-gold mb-4" size={32} />
+              <h3 className="text-2xl font-heading mb-4">Ambiente Unico</h3>
               <p className="text-gray-400 mb-6">
-                Utilizziamo solo prodotti di alta qualità, selezionati per le loro prestazioni superiori e formulazioni rispettose dei capelli.
+                Il nostro salone luminoso, dagli arredi curati nei minimi dettagli, 
+                crea un ambiente unico ed elegante per la tua esperienza di bellezza.
               </p>
             </div>
             <div className="fade-in p-8 border border-gray-800 hover:border-gold transition-all">
-              <h3 className="text-2xl font-heading mb-4">Abbonamenti</h3>
+              <Award className="text-gold mb-4" size={32} />
+              <h3 className="text-2xl font-heading mb-4">Tecnologia Avanzata</h3>
               <p className="text-gray-400 mb-6">
-                Offriamo piani di abbonamento mensili e trimestrali per chi desidera mantenere un look impeccabile con un risparmio sostanziale.
+                Siamo specializzati nell'innovativo sistema "nano" Hairdreams per extension 
+                e trattamenti che rispettano la naturalezza dei tuoi capelli.
               </p>
             </div>
           </div>
@@ -130,14 +166,18 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-zinc-900">
         <div className="container mx-auto px-4 md:px-8 text-center">
           <div className="max-w-2xl mx-auto fade-in">
-            <h2 className="text-4xl font-heading font-bold mb-6">Pronto per un'Esperienza Premium?</h2>
+            <h2 className="text-4xl font-heading font-bold mb-6">Pronto per un'Esperienza Unica?</h2>
             <p className="text-lg text-gray-300 mb-8">
-              Prenota il tuo appuntamento oggi stesso e scopri perché siamo il salone più rinomato della città.
+              Prenota il tuo appuntamento con Pietro e il suo team. Scopri perché siamo il punto di riferimento 
+              per la bellezza nel quartiere tra Città Studi e Lambrate.
             </p>
-            <a href="#" className="btn btn-primary text-lg px-8 py-3">PRENOTA ORA</a>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/prenota/servizio" className="btn btn-primary text-lg px-8 py-3">PRENOTA ORA</a>
+              <a href="tel:0297383541" className="btn btn-outline text-lg px-8 py-3">CHIAMA ORA</a>
+            </div>
           </div>
         </div>
       </section>
