@@ -29,27 +29,27 @@ const Footer: React.FC = () => {
             <div className="space-y-2 text-gray-400">
               <div className="flex justify-between border-b border-gray-800 pb-2">
                 <span>Lunedì</span>
-                <span>10:00 - 19:00</span>
+                <span>Chiuso</span>
               </div>
               <div className="flex justify-between border-b border-gray-800 pb-2">
                 <span>Martedì</span>
-                <span>10:00 - 19:00</span>
+                <span>09:00 - 18:30</span>
               </div>
               <div className="flex justify-between border-b border-gray-800 pb-2">
                 <span>Mercoledì</span>
-                <span>10:00 - 19:00</span>
+                <span>09:00 - 18:30</span>
               </div>
               <div className="flex justify-between border-b border-gray-800 pb-2">
                 <span>Giovedì</span>
-                <span>10:00 - 19:00</span>
+                <span>09:00 - 18:30</span>
               </div>
               <div className="flex justify-between border-b border-gray-800 pb-2">
                 <span>Venerdì</span>
-                <span>10:00 - 19:00</span>
+                <span>09:00 - 18:30</span>
               </div>
               <div className="flex justify-between border-b border-gray-800 pb-2">
                 <span>Sabato</span>
-                <span>09:00 - 18:00</span>
+                <span>09:00 - 18:30</span>
               </div>
               <div className="flex justify-between pb-2">
                 <span>Domenica</span>
