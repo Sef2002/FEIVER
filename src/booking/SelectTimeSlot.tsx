@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabaseClient"; // assicurati che il client sia configurato
+import { supabase } from "../lib/supabase";
 
 function toMinutes(timeString: string) {
   const [hours, minutes] = timeString.split(":").map(Number);
