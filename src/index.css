@@ -36,15 +36,6 @@ body {
   .btn-outline {
     @apply border border-gold text-gold hover:bg-gold hover:text-black;
   }
-
-  /* Inverted button styles for white navbar */
-  .btn-primary-inverted {
-    @apply px-6 py-2 uppercase tracking-wider transition-all duration-300 inline-block bg-black text-white hover:bg-gold hover:text-black;
-  }
-  
-  .btn-outline-inverted {
-    @apply px-6 py-2 uppercase tracking-wider transition-all duration-300 inline-block border border-black text-black hover:bg-black hover:text-white;
-  }
   
   .section-title {
     @apply text-4xl sm:text-5xl font-heading font-semibold mb-6 relative inline-block;
@@ -75,28 +66,6 @@ body {
   .nav-link.active::after {
     @apply w-full;
   }
-
-  /* Inverted nav link styles for white navbar */
-  .nav-link-inverted {
-    @apply relative py-2 text-black transition-all duration-300;
-  }
-  
-  .nav-link-inverted::after {
-    content: "";
-    @apply absolute left-0 bottom-0 w-0 h-[1px] bg-gold transition-all duration-300;
-  }
-  
-  .nav-link-inverted:hover::after {
-    @apply w-full;
-  }
-  
-  .nav-link-inverted.active::after {
-    @apply w-full;
-  }
-
-  .nav-link-inverted:hover {
-    @apply text-gold;
-  }
 }
 
 /* Custom animations */
@@ -113,33 +82,4 @@ body {
 
 .stagger-item {
   transition-delay: var(--delay, 0ms);
-}
-
-/* Custom DatePicker styles */
-.custom-datepicker {
-  @apply border-2 border-gray-300 rounded-lg shadow-lg;
-}
-
-.custom-datepicker .react-datepicker__header {
-  @apply bg-gold text-black border-b-2 border-gray-300;
-}
-
-.custom-datepicker .react-datepicker__current-month {
-  @apply text-black font-heading font-bold;
-}
-
-.custom-datepicker .react-datepicker__day-name {
-  @apply text-black font-primary font-semibold;
-}
-
-.custom-datepicker .react-datepicker__day {
-  @apply text-black hover:bg-gold hover:text-black;
-}
-
-.custom-datepicker .react-datepicker__day--selected {
-  @apply bg-black text-white;
-}
-
-.custom-datepicker .react-datepicker__day--keyboard-selected {
-  @apply bg-gray-200 text-black;
 }
