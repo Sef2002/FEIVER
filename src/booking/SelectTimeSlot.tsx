@@ -131,7 +131,7 @@ const SelectTimeSlot = () => {
         .from('services')
         .select('id, name, price, duration_min')
         .eq('id', storedServiceId)
-        .limit(1);
+        .maybeSingle(); 
 
       if (!error && data) {
         setService(data as Service);
