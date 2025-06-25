@@ -66,6 +66,24 @@ body {
   .nav-link.active::after {
     @apply w-full;
   }
+
+  /* New black nav links for white navbar */
+  .nav-link-black {
+    @apply relative py-2 text-black transition-all duration-300;
+  }
+  
+  .nav-link-black::after {
+    content: "";
+    @apply absolute left-0 bottom-0 w-0 h-[1px] bg-gold transition-all duration-300;
+  }
+  
+  .nav-link-black:hover::after {
+    @apply w-full;
+  }
+  
+  .nav-link-black.active::after {
+    @apply w-full;
+  }
 }
 
 /* Custom animations */
