@@ -3,24 +3,24 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 
-interface Service {
-  id: number;
-  name: string;
-  description?: string;
-  price?: number;
-  duration_min?: number;
-}
+/* 👉 1. importa i componenti UI appena creati */
+import {
+  SelectServiceLayout,
+  Service,
+} from '@/components/services-ui'; // regola il path se diverso
 
 const SelectService = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  /** 2. Fetch servizi da Supabase */
   useEffect(() => {
     const fetchServices = async () => {
       const { data, error } = await supabase.from('services').select('*');
-      if (!error) {
-        setServices(data as Service[] ?? []);
+      if (!error && data) {
+        // Assicurati che il campo `category` arrivi dal DB
+        setServices(data as Service[]);
       }
       setLoading(false);
     };
@@ -28,43 +28,31 @@ const SelectService = () => {
     fetchServices();
   }, []);
 
+  /** 3. Callback di selezione */
   const handleSelect = (service: Service) => {
-    // Store only the ID, not the full object
     localStorage.setItem('selectedServiceId', service.id.toString());
     navigate('/prenota/barbiere');
   };
 
-  return (
-    <div className="max-w-2xl mx-auto py-10 px-4">
-      <h1 className="text-3xl font-bold mb-6 text-center">Scegli il Servizio</h1>
-      {loading ? (
-        <p className="text-center">Caricamento...</p>
-      ) : (
-        <div className="grid gap-4">
-          {services.map((service) => (
-            <button
-              key={service.id}
-              onClick={() => handleSelect(service)}
-              className="p-4 border rounded-lg shadow hover:bg-gray-50 text-left"
-            >
-              <h2 className="text-lg font-semibold">{service.name}</h2>
-              {service.description && (
-                <p className="text-sm text-gray-600">{service.description}</p>
-              )}
-              <div className="mt-2 text-sm text-gray-700 flex items-center space-x-4">
-                {service.price !== undefined && (
-                  <span>€{service.price}</span>
-                )}
-                {service.duration_min !== undefined && (
-                  <span>{service.duration_min} min</span>
-                )}
-              </div>
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  );
+  /** 4. Raggruppa per categoria (usa il campo `category` del DB) */
+  const categories = services.reduce<Record<string, Service[]>>((acc, cur) => {
+    const key = cur.category ?? 'Altri Servizi';
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(cur);
+    return acc;
+  }, {});
+
+  /** 5. Loading spinner + nuova UI */
+  if (loading) {
+    return (
+      <main className="pt-24 min-h-screen flex flex-col items-center justify-center">
+        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-black"></div>
+        <p className="mt-4 text-gray-600 font-primary">Caricamento servizi...</p>
+      </main>
+    );
+  }
+
+  return <SelectServiceLayout categories={categories} onSelect={handleSelect} />;
 };
 
-export default SelectService; 
+export default SelectService;
