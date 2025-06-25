@@ -47,13 +47,13 @@ const TimeSlotButton = ({
 }) => (
   <button
     onClick={onClick}
-    className={p-3 rounded-lg border-2 text-sm font-primary transition-all duration-300 ${
-      isSelected
-        ? 'bg-gold text-black border-gold shadow-lg'
-        : isPerfect
-        ? 'bg-green-50 border-green-300 text-green-800 hover:bg-green-100 hover:border-green-400'
-        : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
-    }}
+className={`p-3 rounded-lg border-2 text-sm font-primary transition-all duration-300 ${
+  isSelected
+    ? 'bg-gold text-black border-gold shadow-lg'
+    : isPerfect
+    ? 'bg-green-50 border-green-300 text-green-800 hover:bg-green-100 hover:border-green-400'
+    : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
+}`}
   >
     <div className="flex flex-col items-center">
       <span className="font-semibold">{slot.label}</span>
