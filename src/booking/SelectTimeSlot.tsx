@@ -217,11 +217,17 @@ const SelectTimeSlot = () => {
       // Prima inserisci/aggiorna il contatto
       let customerId = null;
       if (customerData.phone) {
+        // Cerca contatto esistente usando maybeSingle() invece di single()
         const { data: existingContact, error: contactError } = await supabase
           .from('contacts')
           .select('id')
           .eq('customer_phone', customerData.phone)
-          .single();
+          .maybeSingle();
+
+        if (contactError) {
+          console.error('Error checking existing contact:', contactError);
+          // Continua comunque con la creazione di un nuovo contatto
+        }
 
         if (existingContact) {
           // Aggiorna contatto esistente
@@ -237,6 +243,8 @@ const SelectTimeSlot = () => {
 
           if (!updateError) {
             customerId = existingContact.id;
+          } else {
+            console.error('Error updating contact:', updateError);
           }
         } else {
           // Crea nuovo contatto
@@ -253,6 +261,8 @@ const SelectTimeSlot = () => {
 
           if (!insertError && newContact) {
             customerId = newContact.id;
+          } else {
+            console.error('Error creating contact:', insertError);
           }
         }
       }
@@ -281,7 +291,7 @@ const SelectTimeSlot = () => {
 
       if (appointmentError) {
         console.error('Error creating appointment:', appointmentError);
-        alert('Errore durante la creazione dell\'appuntamento.');
+        alert('Errore durante la creazione dell\'appuntamento. Dettagli: ' + appointmentError.message);
         return;
       }
 
