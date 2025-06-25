@@ -47,13 +47,13 @@ const TimeSlotButton = ({
 }) => (
   <button
     onClick={onClick}
-    className={`p-3 rounded-lg border-2 text-sm font-primary transition-all duration-300 ${
+    className={p-3 rounded-lg border-2 text-sm font-primary transition-all duration-300 ${
       isSelected
         ? 'bg-gold text-black border-gold shadow-lg'
         : isPerfect
         ? 'bg-green-50 border-green-300 text-green-800 hover:bg-green-100 hover:border-green-400'
         : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
-    }`}
+    }}
   >
     <div className="flex flex-col items-center">
       <span className="font-semibold">{slot.label}</span>
@@ -277,12 +277,12 @@ const SelectTimeSlot = () => {
         customer_phone: customerData.phone,
         customer_birthdate: customerData.birthdate || null,
         appointment_date: dateStr,
-        appointment_time: `${selectedTime}:00`,
+        appointment_time: ${selectedTime}:00,
         duration_min: service.duration_min,
         appointment_status: 'in attesa' as const,
         paid: false,
         payment_method: null,
-        business_id: '268e0ae9-c539-471c-b4c2-1663cf598436', // Aggiungere se necessario
+        business_id: null, // Aggiungere se necessario
       };
 
       const { error: appointmentError } = await supabase
