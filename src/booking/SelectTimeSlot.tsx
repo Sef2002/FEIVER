@@ -93,9 +93,9 @@ const SelectTimeSlot = () => {
       appointment_time: `${selectedTime}:00`,
       duration_min: duration,
       customer_name: name,
-      customer_phone,
+      customer_phone, customerPhone,
       barber_id: barberId,
-      service_id: storedServiceId,
+      service_id: storedServiceId
     });
 
     if (error) {
