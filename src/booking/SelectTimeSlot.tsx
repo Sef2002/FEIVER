@@ -272,7 +272,7 @@ const SelectTimeSlot = () => {
         appointment_status: 'in attesa' as const,
         paid: false,
         payment_method: null,
-        business_id: null, // Aggiungere se necessario
+        business_id: '268e0ae9-c539-471c-b4c2-1663cf598436', // Aggiungere se necessario
       };
 
       const { error: appointmentError } = await supabase
