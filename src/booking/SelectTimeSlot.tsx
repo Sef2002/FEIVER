@@ -1,131 +1,194 @@
+import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 
-function toMinutes(timeString: string) {
-  const [hours, minutes] = timeString.split(":").map(Number);
-  return hours * 60 + minutes;
-}
+type Slot = {
+  label: string;
+  value: string;
+};
 
-function fromMinutes(minutes: number) {
-  const hours = Math.floor(minutes / 60);
-  const mins = minutes % 60;
-  return `${hours.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}`;
-}
-
-export async function generateDynamicSlots({
-  business_id,
-  barber_id,
-  requested_date,
-  service_id,
-  requested_time,
-}: {
+type Props = {
   business_id: string;
   barber_id: string;
-  requested_date: string;
   service_id: string;
-  requested_time?: string;
-}) {
-  const weekday = new Date(requested_date).toLocaleDateString("en-US", {
-    weekday: "long",
-  }).toLowerCase();
+  requested_date: string; // es: "2025-06-25"
+  requested_time?: string; // es: "14:00"
+};
 
-  // 1. Get duration
-  const { data: service } = await supabase
-    .from("services")
-    .select("duration_min")
-    .eq("id", service_id)
-    .eq("business_id", business_id)
-    .single();
+export default function SelectTimeSlot(props: Props) {
+  const { business_id, barber_id, service_id, requested_date, requested_time } = props;
 
-  if (!service?.duration_min) return { perfect: [], other: [], best_match: null };
+  const [perfectSlots, setPerfectSlots] = useState<Slot[]>([]);
+  const [otherSlots, setOtherSlots] = useState<Slot[]>([]);
+  const [bestMatch, setBestMatch] = useState<Slot | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const duration = service.duration_min;
+  useEffect(() => {
+    const toMinutes = (time: string) => {
+      const [h, m] = time.split(":").map(Number);
+      return h * 60 + m;
+    };
 
-  // 2. Get availability
-  const { data: availabilities } = await supabase
-    .from("barbers_availabilities")
-    .select("start_time, end_time")
-    .eq("barber_id", barber_id)
-    .eq("weekday", weekday)
-    .eq("business_id", business_id);
+    const fromMinutes = (min: number) => {
+      const h = Math.floor(min / 60);
+      const m = min % 60;
+      return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}`;
+    };
 
-  if (!availabilities?.length) return { perfect: [], other: [], best_match: null };
+    const fetchSlots = async () => {
+      setLoading(true);
 
-  // 3. Get appointments
-  const { data: appointments } = await supabase
-    .from("appointments")
-    .select("appointment_time, duration_min")
-    .eq("appointment_date", requested_date)
-    .eq("barber_id", barber_id)
-    .eq("business_id", business_id)
-    .order("appointment_time", { ascending: true });
+      const weekday = new Date(requested_date)
+        .toLocaleDateString("en-US", { weekday: "long" })
+        .toLowerCase();
 
-  const busyBlocks = (appointments ?? []).map((appt) => {
-    const start = toMinutes(appt.appointment_time);
-    return { start, end: start + appt.duration_min };
-  });
+      // Step 1: get service duration
+      const { data: service } = await supabase
+        .from("services")
+        .select("duration_min")
+        .eq("id", service_id)
+        .eq("business_id", business_id)
+        .single();
 
-  const perfect: any[] = [];
-  const other: any[] = [];
+      if (!service?.duration_min) return setLoading(false);
+      const duration = service.duration_min;
 
-  for (const { start_time, end_time } of availabilities) {
-    const start = toMinutes(start_time);
-    const end = toMinutes(end_time);
+      // Step 2: get availabilities
+      const { data: availabilities } = await supabase
+        .from("barbers_availabilities")
+        .select("start_time, end_time")
+        .eq("barber_id", barber_id)
+        .eq("weekday", weekday)
+        .eq("business_id", business_id);
 
-    const localBusy = busyBlocks
-      .filter((b) => b.start >= start && b.end <= end)
-      .sort((a, b) => a.start - b.start);
+      if (!availabilities?.length) return setLoading(false);
 
-    localBusy.unshift({ start, end: start });
-    localBusy.push({ start: end, end });
+      // Step 3: get appointments
+      const { data: appointments } = await supabase
+        .from("appointments")
+        .select("appointment_time, duration_min")
+        .eq("appointment_date", requested_date)
+        .eq("barber_id", barber_id)
+        .eq("business_id", business_id)
+        .order("appointment_time", { ascending: true });
 
-    for (let i = 0; i < localBusy.length - 1; i++) {
-      const gapStart = localBusy[i].end;
-      const gapEnd = localBusy[i + 1].start;
-      const gap = gapEnd - gapStart;
+      const busyBlocks = appointments?.map((appt) => {
+        const start = toMinutes(appt.appointment_time);
+        return { start, end: start + appt.duration_min };
+      }) || [];
 
-      if (gap === duration) {
-        const label = fromMinutes(gapStart);
-        perfect.push({ label, value: label });
-      }
+      // Step 4: build gaps
+      const perfect: Slot[] = [];
+      const other: Slot[] = [];
 
-      let slotStart = gapStart;
-      while (slotStart + duration <= gapEnd) {
-        const label = fromMinutes(slotStart);
-        if (!perfect.find((p) => p.value === label)) {
-          other.push({ label, value: label });
+      for (const { start_time, end_time } of availabilities) {
+        const start = toMinutes(start_time);
+        const end = toMinutes(end_time);
+
+        const localBusy = busyBlocks
+          .filter((b) => b.start >= start && b.end <= end)
+          .sort((a, b) => a.start - b.start);
+
+        localBusy.unshift({ start, end: start });
+        localBusy.push({ start: end, end });
+
+        for (let i = 0; i < localBusy.length - 1; i++) {
+          const gapStart = localBusy[i].end;
+          const gapEnd = localBusy[i + 1].start;
+          const gap = gapEnd - gapStart;
+
+          if (gap === duration) {
+            const label = fromMinutes(gapStart);
+            perfect.push({ label, value: label });
+          }
+
+          let slotStart = gapStart;
+          while (slotStart + duration <= gapEnd) {
+            const label = fromMinutes(slotStart);
+            if (!perfect.find((p) => p.value === label)) {
+              other.push({ label, value: label });
+            }
+            slotStart += duration;
+          }
         }
-        slotStart += duration;
       }
-    }
-  }
 
-  // 4. Matching
-  let best_match: any = null;
+      // Step 5: best match logic
+      let best: Slot | null = null;
 
-  if (requested_time) {
-    const requestedMin = toMinutes(requested_time);
-    const maxDistance = 30;
+      if (requested_time) {
+        const reqMin = toMinutes(requested_time);
+        const maxDiff = 30;
 
-    const validPerfect = perfect.filter((slot) => {
-      const diff = Math.abs(toMinutes(slot.value) - requestedMin);
-      return diff <= maxDistance;
-    });
-
-    if (validPerfect.length) {
-      const closest = validPerfect.reduce((prev, curr) =>
-        Math.abs(toMinutes(curr.value) - requestedMin) < Math.abs(toMinutes(prev.value) - requestedMin) ? curr : prev
-      );
-      best_match = { ...closest, is_perfect_match: true };
-    } else {
-      const all = [...perfect, ...other];
-      if (all.length) {
-        const closest = all.reduce((prev, curr) =>
-          Math.abs(toMinutes(curr.value) - requestedMin) < Math.abs(toMinutes(prev.value) - requestedMin) ? curr : prev
+        const validPerfect = perfect.filter(
+          (slot) => Math.abs(toMinutes(slot.value) - reqMin) <= maxDiff
         );
-        best_match = { ...closest, is_perfect_match: false };
-      }
-    }
-  }
 
-  return { perfect, other, best_match };
+        if (validPerfect.length > 0) {
+          best = validPerfect.reduce((prev, curr) => {
+            const prevDiff = Math.abs(toMinutes(prev.value) - reqMin);
+            const currDiff = Math.abs(toMinutes(curr.value) - reqMin);
+            return currDiff < prevDiff ? curr : prev;
+          });
+        } else {
+          const all = [...perfect, ...other];
+          if (all.length > 0) {
+            best = all.reduce((prev, curr) => {
+              const prevDiff = Math.abs(toMinutes(prev.value) - reqMin);
+              const currDiff = Math.abs(toMinutes(curr.value) - reqMin);
+              return currDiff < prevDiff ? curr : prev;
+            });
+          }
+        }
+      }
+
+      setPerfectSlots(perfect);
+      setOtherSlots(other);
+      setBestMatch(best);
+      setLoading(false);
+    };
+
+    fetchSlots();
+  }, [business_id, barber_id, service_id, requested_date, requested_time]);
+
+  if (loading) return <p>Caricamento slot...</p>;
+
+  return (
+    <div className="space-y-4">
+      <h2 className="text-xl font-semibold">Orari disponibili</h2>
+
+      {perfectSlots.length > 0 && (
+        <div>
+          <h3 className="font-medium">Perfetti</h3>
+          <div className="flex flex-wrap gap-2">
+            {perfectSlots.map((slot) => (
+              <button key={slot.value} className="border p-2 rounded">
+                {slot.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {otherSlots.length > 0 && (
+        <div>
+          <h3 className="font-medium">Altri</h3>
+          <div className="flex flex-wrap gap-2">
+            {otherSlots.map((slot) => (
+              <button key={slot.value} className="border p-2 rounded text-gray-500">
+                {slot.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {bestMatch && (
+        <div className="mt-4">
+          <p>
+            <strong>Consigliato:</strong> {bestMatch.label}
+          </p>
+        </div>
+      )}
+    </div>
+  );
 }
