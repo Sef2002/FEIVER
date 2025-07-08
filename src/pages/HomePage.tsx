@@ -28,7 +28,7 @@ const HomePage: React.FC = () => {
         <div className="absolute inset-0 bg-black">
           <div 
             className="absolute inset-0 bg-center bg-cover opacity-50"
-            style={{ backgroundImage: "url('/assets/background2.png')" }}
+            style={{ backgroundImage: "url('/assets/background.png')" }}
           ></div>
         </div>
         <div className="container mx-auto px-4 md:px-8 relative z-10">
