@@ -145,17 +145,17 @@ const HomePage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: 'Taglio & Piega',
+                title: 'Taglio Uomo',
                 description: 'Tagli che seguono gli ultimi trend e pieghe professionali per valorizzare il tuo stile naturale.',
                 image: '/assets/piega.png'
               },
               {
-                title: 'Colore Innovativo',
+                title: 'Barba',
                 description: 'Colori alla moda con prodotti Nashi, Redken e Wella per risultati straordinari e duraturi.',
                 image: '/assets/colorazione.png'
               },
               {
-                title: 'Sistema Nano Hairdreams',
+                title: 'Scopri i nostri servizi completi',
                 description: 'Tecnologia innovativa per extension e trattamenti avanzati che rispettano la naturalezza dei capelli.',
                 image: '/assets/extention.png'
               }
