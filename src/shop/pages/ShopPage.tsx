@@ -228,11 +228,11 @@ const ShopPage = () => {
           <div className="max-w-2xl mx-auto fade-in">
             <h2 className="text-4xl font-heading font-bold mb-6 text-black">Hai Bisogno di Consigli?</h2>
             <p className="text-lg text-gray-600 mb-8 font-primary">
-              I nostri esperti sono a tua disposizione per guidarti nella scelta dei prodotti più adatti alle tue esigenze.
+              Alket e il suo team sono a tua disposizione per guidarti nella scelta dei prodotti più adatti alle tue esigenze.
               Contattaci per una consulenza personalizzata.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:0297383541" className="bg-gold text-black px-8 py-3 rounded-lg font-heading font-bold text-lg transition-all duration-300 hover:bg-opacity-90 shadow-lg hover:shadow-xl">
+              <a href="tel:3427575655" className="bg-gold text-black px-8 py-3 rounded-lg font-heading font-bold text-lg transition-all duration-300 hover:bg-opacity-90 shadow-lg hover:shadow-xl">
                 CHIAMA ORA
               </a>
               <a href="/prenota/servizio" className="bg-white text-black border-2 border-black px-8 py-3 rounded-lg font-heading font-bold text-lg transition-all duration-300 hover:bg-gray-50 hover:border-gold">

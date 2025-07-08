@@ -201,8 +201,8 @@ const BookingSuccess = () => {
                   <Phone className="text-gold flex-shrink-0" size={18} />
                   <div>
                     <p className="text-gray-600 font-primary">
-                      <a href="tel:0297383541" className="hover:text-gold transition-colors">
-                        02 9738 3541
+                      <a href="tel:3427575655" className="hover:text-gold transition-colors">
+                        342 757 5655
                       </a>
                     </p>
                   </div>
@@ -211,8 +211,8 @@ const BookingSuccess = () => {
                   <Mail className="text-gold flex-shrink-0" size={18} />
                   <div>
                     <p className="text-gray-600 font-primary">
-                      <a href="mailto:info@seventyfourparrucchieri.it" className="hover:text-gold transition-colors">
-                        info@seventyfourparrucchieri.it
+                      <a href="mailto:info@feiver.it" className="hover:text-gold transition-colors">
+                        info@feiver.it
                       </a>
                     </p>
                   </div>
@@ -221,8 +221,8 @@ const BookingSuccess = () => {
                   <MapPin className="text-gold mt-1 flex-shrink-0" size={18} />
                   <div>
                     <p className="text-gray-600 font-primary">
-                      Via Giuseppe Bardelli, 12<br />
-                      20131 Milano MI
+                      Via G. Mazzini, 11<br />
+                      24047 Treviglio BG
                     </p>
                   </div>
                 </div>
@@ -276,7 +276,7 @@ const BookingSuccess = () => {
                 TORNA ALLA HOME
               </button>
               <a
-                href="tel:0297383541"
+                href="tel:3427575655"
                 className="bg-white text-black border-2 border-black px-8 py-3 rounded-lg font-heading font-bold text-lg transition-all duration-300 hover:bg-gray-50 hover:border-gold"
               >
                 CHIAMA IL SALONE

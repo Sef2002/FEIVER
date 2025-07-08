@@ -149,12 +149,12 @@ const GalleryPage: React.FC = () => {
           <div className="max-w-2xl mx-auto fade-in">
             <h2 className="text-4xl font-heading font-bold mb-6">Vuoi Essere Il Prossimo?</h2>
             <p className="text-lg text-gray-300 mb-8">
-              Ti è piaciuto quello che hai visto? Prenota il tuo appuntamento con Pietro e il suo team 
-              per un'esperienza di bellezza unica nel cuore di Milano.
+              Ti è piaciuto quello che hai visto? Prenota il tuo appuntamento con Alket e il suo team 
+              per un'esperienza di bellezza unica nel cuore di Treviglio.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="/prenota/servizio" className="btn btn-primary text-lg px-8 py-3">PRENOTA ORA</a>
-              <a href="tel:0297383541" className="btn btn-outline text-lg px-8 py-3">CHIAMA ORA</a>
+              <a href="tel:3427575655" className="btn btn-outline text-lg px-8 py-3">CHIAMA ORA</a>
             </div>
           </div>
         </div>

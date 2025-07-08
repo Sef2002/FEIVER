@@ -43,11 +43,11 @@ const HomePage: React.FC = () => {
             <div className="flex items-center gap-6 mb-8 fade-in" style={{ '--delay': '250ms' } as React.CSSProperties}>
               <div className="flex items-center gap-2 text-gold">
                 <MapPin size={18} />
-                <span className="text-sm">Via Giuseppe Bardelli, 12 - Milano</span>
+                <span className="text-sm">Via G. Mazzini, 11, 24047 Treviglio BG</span>
               </div>
               <div className="flex items-center gap-2 text-gold">
                 <Clock size={18} />
-                <span className="text-sm">1 min dalla stazione Lambrate</span>
+                <span className="text-sm">5 min dalla stazione centrale di Treviglio</span>
               </div>
             </div>
             <div className="w-20 h-[1px] bg-gold mb-8"></div>

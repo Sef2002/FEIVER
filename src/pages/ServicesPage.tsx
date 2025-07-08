@@ -91,7 +91,7 @@ const ServicesPage: React.FC = () => {
             <h5 className="text-gold tracking-widest uppercase mb-2 font-primary font-medium">I Nostri Servizi</h5>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-bold mb-6 text-black">SERVIZI INNOVATIVI</h1>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto font-primary">
-              Pietro e il suo team offrono servizi per capelli a tutto tondo: tagli, pieghe, colore e trattamenti specializzati 
+              Alket e il suo team offrono servizi per capelli a tutto tondo: tagli, pieghe, colore e trattamenti specializzati 
               con prodotti di alta qualità e tecniche all'avanguardia.
             </p>
           </div>
@@ -193,12 +193,12 @@ const ServicesPage: React.FC = () => {
           <div className="max-w-2xl mx-auto fade-in">
             <h2 className="text-4xl font-heading font-bold mb-6 text-white">Pronto per un'Esperienza Unica?</h2>
             <p className="text-lg text-gray-300 mb-8 font-primary">
-              Prenota il tuo appuntamento con Pietro e il suo team. Scopri perché siamo il punto di riferimento 
-              per la bellezza nel quartiere tra Città Studi e Lambrate.
+              Prenota il tuo appuntamento con Alket e il suo team. Scopri perché siamo il punto di riferimento 
+              per la bellezza nel cuore di Treviglio.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="/prenota/servizio" className="btn btn-primary text-lg px-8 py-3">PRENOTA ORA</a>
-              <a href="tel:0297383541" className="btn btn-outline text-lg px-8 py-3">CHIAMA ORA</a>
+              <a href="tel:3427575655" className="btn btn-outline text-lg px-8 py-3">CHIAMA ORA</a>
             </div>
           </div>
         </div>
