@@ -38,7 +38,7 @@ const HomePage: React.FC = () => {
               <span className="text-gold">PARRUCCHIERI</span>
             </h1>
             <p className="text-lg sm:text-xl text-gray-300 mb-6 max-w-2xl fade-in" style={{ '--delay': '200ms' } as React.CSSProperties}>
-              Innovazione e creatività nel cuore di Milano. Pietro e il suo team ti offrono un'esperienza unica con i migliori prodotti e le tecniche più avanzate.
+              Innovazione e creatività nel cuore di Milano. Alket e il suo team ti offrono un'esperienza unica con i migliori prodotti e le tecniche più avanzate.
             </p>
             <div className="flex items-center gap-6 mb-8 fade-in" style={{ '--delay': '250ms' } as React.CSSProperties}>
               <div className="flex items-center gap-2 text-gold">
@@ -112,7 +112,7 @@ const HomePage: React.FC = () => {
               <div className="space-y-4 mt-8">
                 <img 
                   src="/assets/story3.png" 
-                  alt="Pietro al lavoro" 
+                  alt="Alket al lavoro" 
                   className="w-full h-60 sm:h-80 object-cover rounded-lg shadow-md"
                 />
                 <img 
@@ -266,7 +266,7 @@ const HomePage: React.FC = () => {
           <div className="max-w-2xl mx-auto fade-in">
             <h2 className="text-4xl sm:text-5xl font-heading font-bold mb-6">Prenota Il Tuo Appuntamento</h2>
             <p className="text-lg text-gray-300 mb-8">
-              Affidati all'esperienza di Pietro e del suo team. Prenota ora per un'esperienza di bellezza unica nel cuore di Milano.
+              Affidati all'esperienza di Alket e del suo team. Prenota ora per un'esperienza di bellezza unica nel cuore di Milano.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/prenota/servizio" className="btn btn-primary text-lg px-8 py-3">PRENOTA ORA</Link>
