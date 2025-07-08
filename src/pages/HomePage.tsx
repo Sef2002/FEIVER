@@ -146,7 +146,7 @@ const HomePage: React.FC = () => {
             {[
               {
                 title: 'Taglio Uomo',
-                description: 'Tagli che seguono gli ultimi trend e pieghe professionali per valorizzare il tuo stile naturale.',
+                
                 image: '/assets/piega.png'
               },
               {
