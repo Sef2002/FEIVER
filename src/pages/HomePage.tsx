@@ -151,12 +151,12 @@ const HomePage: React.FC = () => {
               },
               {
                 title: 'Barba',
-                description: 'Colori alla moda con prodotti Nashi, Redken e Wella per risultati straordinari e duraturi.',
+                
                 image: '/assets/colorazione.png'
               },
               {
                 title: 'Scopri i nostri servizi completi',
-                description: 'Tecnologia innovativa per extension e trattamenti avanzati che rispettano la naturalezza dei capelli.',
+                
                 image: '/assets/extention.png'
               }
             ].map((service, index) => (
