@@ -94,7 +94,10 @@ const SelectService = () => {
   /* fetch */
   useEffect(() => {
     const fetchServices = async () => {
-      const { data, error } = await supabase.from('services').select('*');
+      const { data, error } = await supabase
+        .from('services')
+        .select('*')
+        .eq('business_id', '268e0ae9-c539-471c-b4c2-1663cf598436');   // 🔍 filtro per business
       if (!error && data) setServices(data as Service[]);
       setLoading(false);
     };
