@@ -25,8 +25,12 @@ const Navbar: React.FC = () => {
       }`}>
         <div className="container mx-auto px-4 md:px-8">
           <nav className="flex justify-between items-center bg-white rounded-[40px] px-8 py-4 shadow-lg border border-gray-200">
-            <NavLink to="/" className="text-2xl font-heading text-black">
-              SEVENTYFOUR
+            <NavLink to="/" className="flex items-center">
+              <img 
+                src="/assets/logo.png" 
+                alt="Feivèr Logo" 
+                className="h-8 w-auto"
+              />
             </NavLink>
 
             {/* Desktop Menu */}

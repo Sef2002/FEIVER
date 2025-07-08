@@ -76,13 +76,10 @@ const HomePage: React.FC = () => {
               
               <div className="space-y-6 text-gray-600 font-primary leading-relaxed">
                 <p>
-                  Seventyfour Parrucchieri sorge in Via Giuseppe Bardelli 12 a Milano, nel vibrante e sempre attivo quartiere residenziale tra Città Studi e Lambrate, a soli un minuto a piedi dalla stazione ferroviaria.
+                  Nel 2021, Feivèr apre il suo primo salone nel cuore di Treviglio (BG), precisamente in Via San Martino, una delle vie più frequentate e conosciute dai cittadini. È una vera e propria boutique del capello che prende forma dalla passione e dalla dedizione dei suoi titolari.
                 </p>
                 <p>
-                  Pietro, il titolare, insieme al suo intero staff si prende cura con amore e dedizione della sua clientela proponendo servizi innovativi e creativi, colori alla moda e tagli che seguono sempre gli ultimi trend.
-                </p>
-                <p>
-                  Il nostro ambiente luminoso, dagli arredi curati nei minimi dettagli, crea un'atmosfera unica ed elegante dove ogni cliente può rilassarsi e godersi un'esperienza di bellezza completa.
+                  Dopo tre anni di attività, Alket riceve un'interessante proposta d'acquisto e, con grande coraggio, apre il salone in Via Giuseppe Mazzini 11, sempre nella città di Treviglio. Qui, Alket continua a portare avanti la sua passione per i tagli e barba, offrendo ai clienti un'esperienza unica e prodotti di qualità.
                 </p>
               </div>
               
