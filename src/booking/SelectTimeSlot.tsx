@@ -167,7 +167,7 @@ const SelectTimeSlot = () => {
       .select('appointment_time, duration_min')
       .eq('appointment_date', dateStr)
       .eq('barber_id', barberId)
-      .neq('appointment_status', 'cancellato');
+      .neq('appointment_status', 'cancelled');
 
     if (error) {
       console.error('Error checking slot availability:', error);
