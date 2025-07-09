@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
       <div className="container mx-auto px-4 md:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h4 className="text-2xl font-heading mb-4 text-black">SEVENTYFOUR PARRUCCHIERI</h4>
+            <h4 className="text-2xl font-heading mb-4 text-black">FEIVER PARRUCCHIERI</h4>
             <p className="text-gray-600 mb-6">
               Nel cuore di Treviglio, Alket e il suo team offrono servizi innovativi e creativi in un ambiente luminoso ed elegante.
             </p>
@@ -89,7 +89,7 @@ const Footer: React.FC = () => {
         </div>
         
         <div className="border-t border-gray-200 mt-10 pt-6 text-gray-500 text-sm flex flex-col md:flex-row justify-between items-center">
-          <p>© 2025 Seventyfour Parrucchieri. Tutti i diritti riservati.</p>
+          <p>© 2025 Feiver Parrucchieri. Tutti i diritti riservati.</p>
           <div className="mt-4 md:mt-0">
             <a href="#" className="hover:text-gold transition-colors mr-6">Privacy Policy</a>
             <a href="#" className="hover:text-gold transition-colors">Termini di Servizio</a>

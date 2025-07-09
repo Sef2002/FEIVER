@@ -124,14 +124,14 @@ const GalleryPage: React.FC = () => {
               <div key={index} className="group relative overflow-hidden rounded-lg">
                 <img 
                   src={image}
-                  alt={`Instagram ${index + 1}`}
+                  alt={`Feiver Instagram ${index + 1}`}
                   className="w-full aspect-square object-cover"
                 />
                 <a 
                   href="#" 
                   className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
                 >
-                  <span className="text-white text-sm font-semibold">@seventyfourparrucchieri</span>
+                  <span className="text-white text-sm font-semibold">@feiverparrucchieri</span>
                 </a>
               </div>
             ))}

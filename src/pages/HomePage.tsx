@@ -34,7 +34,7 @@ const HomePage: React.FC = () => {
         <div className="container mx-auto px-4 md:px-8 relative z-10">
           <div className="max-w-4xl">
             <h1 className="text-5xl sm:text-6xl md:text-7xl font-heading font-bold mb-4 fade-in" style={{ '--delay': '100ms' } as React.CSSProperties}>
-              SEVENTYFOUR<br />
+              FEIVER<br />
               <span className="text-gold">PARRUCCHIERI</span>
             </h1>
             <p className="text-lg sm:text-xl text-gray-300 mb-6 max-w-2xl fade-in" style={{ '--delay': '200ms' } as React.CSSProperties}>
@@ -100,7 +100,7 @@ const HomePage: React.FC = () => {
               <div className="space-y-4">
                 <img 
                   src="/assets/story1.png" 
-                  alt="Seventyfour Parrucchieri - Ambiente elegante" 
+                  alt="Feiver Parrucchieri - Ambiente elegante" 
                   className="w-full h-48 sm:h-64 object-cover rounded-lg shadow-md"
                 />
                 <img 
@@ -212,7 +212,7 @@ const HomePage: React.FC = () => {
             <div className="col-span-2 row-span-2">
               <img 
                 src="/assets/photo1.png" 
-                alt="Seventyfour Parrucchieri - Lavoro professionale" 
+                alt="Feiver Parrucchieri - Lavoro professionale" 
                 className="w-full h-full object-cover rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
               />
             </div>
