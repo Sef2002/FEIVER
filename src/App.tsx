@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import CookieBanner from './components/CookieBanner'; // ✅ IMPORTED
 
 import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
@@ -35,6 +36,7 @@ function App() {
             <Route path="/prenota/successo" element={<BookingSuccess />} />
           </Routes>
           <Footer />
+          <CookieBanner /> {/* ✅ ADDED */}
         </div>
       </Router>
     </CartProvider>
