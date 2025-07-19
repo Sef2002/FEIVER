@@ -126,71 +126,33 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Services Preview - UPDATED TO WHITE */}
+      {/* Treatwell Embed */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-12 fade-in">
             <h5 className="text-gray-600 tracking-widest uppercase mb-2 font-primary">
-              Servizi Specializzati
+              Prenota Online
             </h5>
             <h2 className="text-4xl sm:text-5xl font-heading font-bold mb-6 text-black">
-              I NOSTRI SERVIZI
+              FEIVER SU TREATWELL
             </h2>
             <div className="w-20 h-[2px] bg-gold mx-auto mb-6"></div>
             <p className="text-gray-600 mt-4 max-w-2xl mx-auto font-primary">
-              Servizi per capelli a tutto tondo: tagli, pieghe, colore e trattamenti specializzati per la chioma
+              Prenota direttamente online i nostri servizi attraverso la piattaforma Treatwell
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'Taglio Uomo',
-                
-                image: '/assets/piega.png'
-              },
-              {
-                title: 'Barba',
-                
-                image: '/assets/colorazione.png'
-              },
-              {
-                title: 'Scopri i nostri servizi completi',
-                
-                image: '/assets/extention.png'
-              }
-            ].map((service, index) => (
-              <div 
-                key={index} 
-                className="group bg-white border-2 border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg hover:border-gold transition-all duration-300 fade-in"
-                style={{ '--delay': `${index * 100}ms` } as React.CSSProperties}
-              >
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-                
-                <div className="p-6">
-                  <h3 className="text-2xl font-heading font-bold mb-3 text-black group-hover:text-gold transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4 font-primary text-sm leading-relaxed">
-                    {service.description}
-                  </p>
-                  <Link 
-                    to="/servizi" 
-                    className="flex items-center text-gold hover:text-black transition-colors group/link"
-                  >
-                    <span className="mr-2 font-primary font-medium">Scopri di più</span>
-                    <ArrowRight size={16} className="group-hover/link:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </div>
-            ))}
+          <div className="max-w-6xl mx-auto fade-in">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden border-2 border-gray-200">
+              <iframe
+                src="https://www.treatwell.it/salone/feiver/"
+                width="100%"
+                height="800"
+                frameBorder="0"
+                className="w-full"
+                title="Feiver su Treatwell - Prenota Online"
+              />
+            </div>
           </div>
         </div>
       </section>
