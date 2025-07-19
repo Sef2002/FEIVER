@@ -18,7 +18,20 @@ const HomePage: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     handleScroll();
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Load Treatwell widget script
+    const script = document.createElement('script');
+    script.src = 'https://widget.treatwell.com/js/widget-loader.min.js';
+    script.async = true;
+    document.head.appendChild(script);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      // Clean up script
+      const existingScript = document.querySelector('script[src="https://widget.treatwell.com/js/widget-loader.min.js"]');
+      if (existingScript) {
+        document.head.removeChild(existingScript);
+      }
+    };
   }, []);
 
   return (
@@ -144,14 +157,14 @@ const HomePage: React.FC = () => {
 
           <div className="max-w-6xl mx-auto fade-in">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden border-2 border-gray-200">
-              <iframe
-                src="https://www.treatwell.it/salone/feiver/"
-                width="100%"
-                height="800"
-                frameBorder="0"
-                className="w-full"
-                title="Feiver su Treatwell - Prenota Online"
-              />
+              <div
+                className="treatwell-widget"
+                data-url="https://www.treatwell.it/salone/feiver/"
+                data-type="booking"
+                data-theme="minimal"
+                data-locale="it"
+                style={{ minHeight: '800px', width: '100%' }}
+              ></div>
             </div>
           </div>
         </div>
