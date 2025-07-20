@@ -12,6 +12,17 @@ const Navbar: React.FC = () => {
 
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
+  const scrollToBooking = () => {
+    const bookingSection = document.getElementById('prenota-online');
+    if (bookingSection) {
+      bookingSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+    setIsOpen(false); // Close mobile menu if open
+  };
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
@@ -44,7 +55,7 @@ const Navbar: React.FC = () => {
             {/* CTA Buttons + Cart */}
             <div className="hidden md:flex items-center space-x-4">
               <NavLink to="/shop" className="btn btn-outline text-sm">SHOP</NavLink>
-              <NavLink to="/prenota/servizio" className="btn btn-primary text-sm">PRENOTA</NavLink>
+              <button onClick={scrollToBooking} className="btn btn-primary text-sm">PRENOTA</button>
 
               {/* Cart Icon */}
               <button
@@ -84,7 +95,7 @@ const Navbar: React.FC = () => {
             ))}
             <div className="flex flex-col space-y-4 pt-6">
               <NavLink to="/shop" className="btn btn-outline text-center" onClick={() => setIsOpen(false)}>SHOP</NavLink>
-              <NavLink to="/prenota/servizio" className="btn btn-primary text-center" onClick={() => setIsOpen(false)}>PRENOTA</NavLink>
+              <button onClick={scrollToBooking} className="btn btn-primary text-center">PRENOTA</button>
             </div>
           </div>
         </div>

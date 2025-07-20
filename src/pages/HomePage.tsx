@@ -3,6 +3,16 @@ import { ArrowRight, MapPin, Clock, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const HomePage: React.FC = () => {
+  const scrollToBooking = () => {
+    const bookingSection = document.getElementById('prenota-online');
+    if (bookingSection) {
+      bookingSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const elements = document.querySelectorAll('.fade-in');
@@ -65,7 +75,7 @@ const HomePage: React.FC = () => {
             </div>
             <div className="w-20 h-[1px] bg-gold mb-8"></div>
             <div className="flex flex-wrap gap-4 fade-in" style={{ '--delay': '300ms' } as React.CSSProperties}>
-              <Link to="/prenota/servizio" className="btn btn-primary">PRENOTA ORA</Link>
+              <button onClick={scrollToBooking} className="btn btn-primary">PRENOTA ORA</button>
               <Link to="/servizi" className="btn btn-outline">SCOPRI I SERVIZI</Link>
             </div>
           </div>
@@ -140,7 +150,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Treatwell Embed */}
-      <section className="py-20 bg-gray-50">
+      <section id="prenota-online" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-12 fade-in">
             <h5 className="text-gray-600 tracking-widest uppercase mb-2 font-primary">
@@ -244,7 +254,7 @@ const HomePage: React.FC = () => {
               Affidati all'esperienza di Alket e del suo team. Prenota ora per un'esperienza di bellezza unica nel cuore di Milano.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/prenota/servizio" className="btn btn-primary text-lg px-8 py-3">PRENOTA ORA</Link>
+              <button onClick={scrollToBooking} className="btn btn-primary text-lg px-8 py-3">PRENOTA ORA</button>
               <a href="tel:0297383541" className="btn btn-outline text-lg px-8 py-3">CHIAMA ORA</a>
             </div>
           </div>

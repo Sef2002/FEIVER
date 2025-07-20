@@ -2,6 +2,11 @@ import React, { useEffect } from 'react';
 import { Scissors, Palette, Sparkles, Droplets, Heart, Clock, Star, Award } from 'lucide-react';
 
 const ServicesPage: React.FC = () => {
+  const scrollToBooking = () => {
+    // Navigate to home page and then scroll to booking section
+    window.location.href = '/#prenota-online';
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const elements = document.querySelectorAll('.fade-in');
@@ -197,7 +202,7 @@ const ServicesPage: React.FC = () => {
               per la bellezza nel cuore di Treviglio.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/prenota/servizio" className="btn btn-primary text-lg px-8 py-3">PRENOTA ORA</a>
+              <button onClick={scrollToBooking} className="btn btn-primary text-lg px-8 py-3">PRENOTA ORA</button>
               <a href="tel:3427575655" className="btn btn-outline text-lg px-8 py-3">CHIAMA ORA</a>
             </div>
           </div>

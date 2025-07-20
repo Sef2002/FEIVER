@@ -3,6 +3,11 @@ import React, { useState, useEffect } from 'react';
 const GalleryPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
+  const scrollToBooking = () => {
+    // Navigate to home page and then scroll to booking section
+    window.location.href = '/#prenota-online';
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const elements = document.querySelectorAll('.fade-in');
@@ -153,7 +158,7 @@ const GalleryPage: React.FC = () => {
               per un'esperienza di bellezza unica nel cuore di Treviglio.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/prenota/servizio" className="btn btn-primary text-lg px-8 py-3">PRENOTA ORA</a>
+              <button onClick={scrollToBooking} className="btn btn-primary text-lg px-8 py-3">PRENOTA ORA</button>
               <a href="tel:3427575655" className="btn btn-outline text-lg px-8 py-3">CHIAMA ORA</a>
             </div>
           </div>

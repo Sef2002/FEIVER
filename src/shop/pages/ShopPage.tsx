@@ -7,6 +7,11 @@ const ShopPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
+  const scrollToBooking = () => {
+    // Navigate to home page and then scroll to booking section
+    window.location.href = '/#prenota-online';
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const elements = document.querySelectorAll('.fade-in');
@@ -235,9 +240,9 @@ const ShopPage = () => {
               <a href="tel:3427575655" className="bg-gold text-black px-8 py-3 rounded-lg font-heading font-bold text-lg transition-all duration-300 hover:bg-opacity-90 shadow-lg hover:shadow-xl">
                 CHIAMA ORA
               </a>
-              <a href="/prenota/servizio" className="bg-white text-black border-2 border-black px-8 py-3 rounded-lg font-heading font-bold text-lg transition-all duration-300 hover:bg-gray-50 hover:border-gold">
+              <button onClick={scrollToBooking} className="bg-white text-black border-2 border-black px-8 py-3 rounded-lg font-heading font-bold text-lg transition-all duration-300 hover:bg-gray-50 hover:border-gold">
                 PRENOTA CONSULENZA
-              </a>
+              </button>
             </div>
           </div>
         </div>
