@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
               <img 
                 src="/assets/logo.png" 
                 alt="Feivèr Logo" 
-                className="h-10 w-auto"
+                className="h-11 w-auto"
               />
             </NavLink>
 
