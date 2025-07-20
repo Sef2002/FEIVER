@@ -9,7 +9,6 @@ const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const { cartItems } = useCart();
-
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   const scrollToBooking = () => {
