@@ -57,7 +57,7 @@ const HomePage: React.FC = () => {
         <div className="container mx-auto px-4 md:px-8 relative z-10">
           <div className="max-w-4xl">
             <h1 className="text-5xl sm:text-6xl md:text-7xl font-heading font-bold mb-4 fade-in" style={{ '--delay': '100ms' } as React.CSSProperties}>
-              FEIVER<br />
+              FEIVÈR<br />
               <span className="text-gold">PARRUCCHIERI</span>
             </h1>
             <p className="text-lg sm:text-xl text-gray-300 mb-6 max-w-2xl fade-in" style={{ '--delay': '200ms' } as React.CSSProperties}>
