@@ -47,7 +47,7 @@ const Navbar: React.FC = () => {
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-10">
               <NavLink to="/" className={({ isActive }) => `nav-link-black ${isActive ? 'active' : ''} text-sm tracking-wider`}>HOME</NavLink>
-              <NavLink to="/servizi" className={({ isActive }) => `nav-link-black ${isActive ? 'active' : ''} text-sm tracking-wider`}>SERVIZI</NavLink>
+              <button onClick={scrollToBooking} className="nav-link-black text-sm tracking-wider">SERVIZI</button>
               <NavLink to="/galleria" className={({ isActive }) => `nav-link-black ${isActive ? 'active' : ''} text-sm tracking-wider`}>GALLERIA</NavLink>
               <NavLink to="/contatti" className={({ isActive }) => `nav-link-black ${isActive ? 'active' : ''} text-sm tracking-wider`}>CONTATTI</NavLink>
             </div>
@@ -83,16 +83,33 @@ const Navbar: React.FC = () => {
           isOpen ? 'translate-x-0' : 'translate-x-full'
         } pt-20`}>
           <div className="container mx-auto px-4 flex flex-col space-y-8">
-            {['/', '/servizi', '/galleria', '/contatti'].map((path, i) => (
-              <NavLink
-                key={i}
-                to={path}
-                className="text-xl font-heading text-black hover:text-gold transition-colors py-2"
-                onClick={() => setIsOpen(false)}
-              >
-                {path.replace('/', '').toUpperCase() || 'HOME'}
-              </NavLink>
-            ))}
+            <NavLink
+              to="/"
+              className="text-xl font-heading text-black hover:text-gold transition-colors py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              HOME
+            </NavLink>
+            <button
+              onClick={scrollToBooking}
+              className="text-xl font-heading text-black hover:text-gold transition-colors py-2 text-left"
+            >
+              SERVIZI
+            </button>
+            <NavLink
+              to="/galleria"
+              className="text-xl font-heading text-black hover:text-gold transition-colors py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              GALLERIA
+            </NavLink>
+            <NavLink
+              to="/contatti"
+              className="text-xl font-heading text-black hover:text-gold transition-colors py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              CONTATTI
+            </NavLink>
             <div className="flex flex-col space-y-4 pt-6">
               <NavLink to="/shop" className="btn btn-outline text-center" onClick={() => setIsOpen(false)}>SHOP</NavLink>
               <button onClick={scrollToBooking} className="btn btn-primary text-center">PRENOTA</button>
