@@ -197,7 +197,7 @@ const HomePage: React.FC = () => {
             <div className="col-span-2 row-span-2">
               <img 
                 src="/assets/photo1.png" 
-                alt="Feiver Parrucchieri - Lavoro professionale" 
+                alt="Feivèr Parrucchieri - Lavoro professionale" 
                 className="w-full h-full object-cover rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
               />
             </div>

@@ -138,7 +138,7 @@ const GalleryPage: React.FC = () => {
                   href="#" 
                   className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
                 >
-                  <span className="text-white text-sm font-primary font-semibold">@feiverparrucchieri</span>
+                  <span className="text-white text-sm font-primary font-semibold">@feiver_barber</span>
                 </a>
               </div>
             ))}
