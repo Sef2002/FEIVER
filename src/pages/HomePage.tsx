@@ -58,7 +58,7 @@ const HomePage: React.FC = () => {
           <div className="max-w-4xl">
             <h1 className="text-5xl sm:text-6xl md:text-7xl font-heading font-bold mb-4 fade-in" style={{ '--delay': '100ms' } as React.CSSProperties}>
               FEIVÈR<br />
-              <span className="text-gold">PARRUCCHIERI</span>
+              <span className="text-gold">BARBER</span>
             </h1>
             <p className="text-lg sm:text-xl text-gray-300 mb-6 max-w-2xl fade-in" style={{ '--delay': '200ms' } as React.CSSProperties}>
               Innovazione e creatività nel cuore di Treviglio. Un'esperienza unica con i migliori prodotti e le tecniche più avanzate.
