@@ -61,7 +61,7 @@ const HomePage: React.FC = () => {
               <span className="text-gold">PARRUCCHIERI</span>
             </h1>
             <p className="text-lg sm:text-xl text-gray-300 mb-6 max-w-2xl fade-in" style={{ '--delay': '200ms' } as React.CSSProperties}>
-              Innovazione e creatività nel cuore di Milano. Alket e il suo team ti offrono un'esperienza unica con i migliori prodotti e le tecniche più avanzate.
+              Innovazione e creatività nel cuore di Treviglio.
             </p>
             <div className="flex items-center gap-6 mb-8 fade-in" style={{ '--delay': '250ms' } as React.CSSProperties}>
               <div className="flex items-center gap-2 text-gold">
