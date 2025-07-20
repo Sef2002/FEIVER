@@ -123,7 +123,7 @@ const HomePage: React.FC = () => {
               <div className="space-y-4">
                 <img 
                   src="/assets/story1.png" 
-                  alt="Feiver Parrucchieri - Ambiente elegante" 
+                  alt="Feiver B - Ambiente elegante" 
                   className="w-full h-48 sm:h-64 object-cover rounded-lg shadow-md"
                 />
                 <img 
