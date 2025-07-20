@@ -55,7 +55,7 @@ const GalleryPage: React.FC = () => {
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-bold mb-6 text-black">GALLERIA</h1>
             <div className="w-20 h-[2px] bg-gold mx-auto mb-6"></div>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto font-primary">
-              Scopri i nostri lavori e l'ambiente elegante di Feiver Parrucchieri. 
+              Scopri i nostri lavori e l'ambiente elegante di Feivèr Barber. 
               Ogni creazione racconta la nostra passione per l'innovazione e la bellezza.
             </p>
           </div>
