@@ -110,7 +110,7 @@ const HomePage: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
                 <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
                   <Award className="text-gold flex-shrink-0" size={20} />
-                  <span className="text-sm text-gray-700 font-primary font-medium">Prodotti Nashi, Redken, Wella</span>
+                  <span className="text-sm text-gray-700 font-primary font-medium">Dal 2021</span>
                 </div>
                 <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
                   <Award className="text-gold flex-shrink-0" size={20} />
