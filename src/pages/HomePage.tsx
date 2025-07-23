@@ -169,7 +169,7 @@ const HomePage: React.FC = () => {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden border-2 border-gray-200">
               <div
                 className="treatwell-widget"
-                data-url="https://www.treatwell.it/salone/feiver/"
+                data-url="https://widget.treatwell.it/salone/100027705/menu/"
                 data-type="booking"
                 data-theme="minimal"
                 data-locale="it"
