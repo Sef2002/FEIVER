@@ -35,7 +35,7 @@ export async function getAvailableTimeSlots(
     .select('appointment_time, duration_min')
     .eq('appointment_date', date)
     .eq('barber_id', barberId)
-    .in('appointment_status', ['confirmed', 'in attesa'])
+    .in('appointment_status', ['confirmed', 'pending'])
     .order('appointment_time', { ascending: true });
 
   if (apptErr) {
