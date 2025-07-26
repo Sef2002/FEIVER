@@ -24,6 +24,7 @@ export async function getAvailableTimeSlots(
 
   if (availErr || !availabilities?.length) {
     console.error('No availability:', availErr);
+    // This returns empty arrays: the UI should display "Non ci sono orari disponibili"
     return { perfect: [], other: [] };
   }
 
@@ -64,7 +65,7 @@ export async function getAvailableTimeSlots(
     /* 5a. Seleziona solo i blocchi che si sovrappongono
            (anche parzialmente) alla fascia */
     const localBusy = busyBlocks
-      .filter((b) => !(b.end <= availStart || b.start >= availEnd)) // ← fix principale
+      .filter((b) => !(b.end <= availStart || b.start >= availEnd))
       .sort((a, b) => a.start - b.start);
 
     /* 5b. Aggiungi blocchi fittizi per gestire bordi */
