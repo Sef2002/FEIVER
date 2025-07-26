@@ -271,7 +271,7 @@ const SelectTimeSlot = () => {
         appointment_date: dateStr,
         appointment_time: `${selectedTime}:00`,
         duration_min: service.duration_min,
-        appointment_status: 'in attesa' as const,
+        appointment_status: 'pending' as const,
         paid: false,
         payment_method: null,
         business_id: '268e0ae9-c539-471c-b4c2-1663cf598436',
