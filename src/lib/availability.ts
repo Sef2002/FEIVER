@@ -22,10 +22,9 @@ export async function getAvailableTimeSlots(
     .eq('barber_id', barberId)
     .eq('weekday', weekday);
 
+  // If no availability or query error, just return empty slots without logging anything
   if (availErr || !availabilities?.length) {
-    console.error('No availability:', availErr);
-    // This returns empty arrays: the UI should display "Non ci sono orari disponibili"
-    return { perfect: [], other: [] }; 
+    return { perfect: [], other: [] };
   }
 
   /* --------------------------------------------------
@@ -39,7 +38,6 @@ export async function getAvailableTimeSlots(
     .order('appointment_time', { ascending: true });
 
   if (apptErr) {
-    console.error('Appointment fetch error:', apptErr);
     return { perfect: [], other: [] };
   }
 
@@ -62,36 +60,28 @@ export async function getAvailableTimeSlots(
     const availStart = toMinutes(start_time);
     const availEnd = toMinutes(end_time);
 
-    /* 5a. Seleziona solo i blocchi che si sovrappongono
-           (anche parzialmente) alla fascia */
     const localBusy = busyBlocks
       .filter((b) => !(b.end <= availStart || b.start >= availEnd))
       .sort((a, b) => a.start - b.start);
 
-    /* 5b. Aggiungi blocchi fittizi per gestire bordi */
     localBusy.unshift({ start: availStart, end: availStart });
     localBusy.push({ start: availEnd, end: availEnd });
 
-    /* 5c. Calcola spazi vuoti tra blocchi occupati */
     for (let i = 0; i < localBusy.length - 1; i++) {
       const gapStart = Math.max(localBusy[i].end, availStart);
       const gapEnd = Math.min(localBusy[i + 1].start, availEnd);
       const gap = gapEnd - gapStart;
 
-      if (gap < duration) continue; // gap troppo piccolo
+      if (gap < duration) continue;
 
-      /* Perfect slot (gap == duration) */
       if (gap === duration) {
         const label = fromMinutes(gapStart);
         perfect.push({ label, value: label });
       }
 
-      /* Riempie il gap con slot regolari ogni `duration` minuti */
       let slotStart = gapStart;
       while (slotStart + duration <= gapEnd) {
         const label = fromMinutes(slotStart);
-
-        /* Evita duplicati */
         if (!perfect.find((p) => p.value === label) && !other.find((o) => o.value === label)) {
           other.push({ label, value: label });
         }
