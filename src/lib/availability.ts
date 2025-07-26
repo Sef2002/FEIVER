@@ -22,10 +22,10 @@ export async function getAvailableTimeSlots(
     .eq('barber_id', barberId)
     .eq('weekday', weekday);
 
-if (availErr || !availabilities?.length) {
-  if (availErr) console.error('Error fetching availability:', availErr);
-  return { perfect: [], other: [] }; // No error for normal "no availability" days
-}
+  if (availErr || !availabilities?.length) {
+    console.error('No availability:', availErr);
+    // This returns empty arrays: the UI should display "Non ci sono orari disponibili"
+    return { perfect: [], other: [] }; 
   }
 
   /* --------------------------------------------------
